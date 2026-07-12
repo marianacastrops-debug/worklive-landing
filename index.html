@@ -904,7 +904,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
       <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff6677;font-weight:700">31 restantes</span></div>
       <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:38%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
     </div>
-    <a href="https://pay.cakto.com.br/ytmzh93" class="btn bo">Assinar Plano Mensal</a><div class="pnote">Ideal para começar</div>
+    <a href="https://pay.cakto.com.br/ytmzh93" class="btn bo em-breve-btn">Assinar Plano Mensal</a><div class="pnote">Ideal para começar</div>
     </div>
     <div class="plan hot reveal d2">
       <div class="pbadge">✦ Mais escolhido</div>
@@ -915,7 +915,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
       <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff3344;font-weight:800">⚡ Apenas 8 restantes!</span></div>
       <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:84%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
     </div>
-    <a href="https://pay.cakto.com.br/n7xhgh3" class="btn bb" style="background:linear-gradient(135deg,#cc0022,#ff3344);box-shadow:0 4px 20px rgba(255,51,68,.4)">🔥 Garantir Plano Trimestral</a><div class="pnote" style="color:#ff6677">⚡ Últimas vagas neste preço!</div>
+    <a href="https://pay.cakto.com.br/n7xhgh3" class="btn bb em-breve-btn" style="background:linear-gradient(135deg,#cc0022,#ff3344);box-shadow:0 4px 20px rgba(255,51,68,.4)">🔥 Garantir Plano Trimestral</a><div class="pnote" style="color:#ff6677">⚡ Últimas vagas neste preço!</div>
     </div>
     <div class="plan">
       <div class="pname">Semestral</div><div class="pprice"><sup>R$</sup>397</div><div class="pper">/6 meses · R$ 66/mês</div><div class="psave">Economize 55%</div>
@@ -925,7 +925,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
       <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff6677;font-weight:700">19 restantes</span></div>
       <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:62%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
     </div>
-    <a href="https://pay.cakto.com.br/m75f5ho" class="btn bo">Assinar Plano Semestral</a><div class="pnote">Melhor custo-benefício</div>
+    <a href="https://pay.cakto.com.br/m75f5ho" class="btn bo em-breve-btn">Assinar Plano Semestral</a><div class="pnote">Melhor custo-benefício</div>
     </div>
   </div>
 
@@ -1310,5 +1310,21 @@ const phoneEl = document.getElementById('phone-notifs');
 if(phoneEl) phoneObs.observe(phoneEl);
 </script>
 
+
+<div id="emBreveOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;color:#000;max-width:340px;width:90%;padding:36px 28px;border-radius:14px;text-align:center;font-family:inherit;">
+    <div style="font-size:15px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#000;margin-bottom:10px;">Em breve</div>
+    <p style="font-size:13px;color:#333;line-height:1.6;margin-bottom:22px;">Estamos finalizando a liberação da extensão. Assim que estiver disponível, você vai poder assinar por aqui.</p>
+    <button onclick="document.getElementById('emBreveOverlay').style.display='none'" style="background:#000;color:#fff;border:none;padding:12px 26px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">Entendi</button>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.em-breve-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      document.getElementById('emBreveOverlay').style.display = 'flex';
+    });
+  });
+</script>
 </body>
 </html>
