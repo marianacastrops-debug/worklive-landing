@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WorkLive — Automação para TikTok Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#03060f;--s1:#060d1a;--s2:#080f20;
+  --b:#0f1e3a;--b2:#162848;
+  --blue:#0088ff;--cyan:#00d4ff;--cyan2:#0099cc;
+  --t:#ddeeff;--t2:#7a9cc0;--t3:#3a5878;
+  --glass:rgba(8,15,32,0.7);
+  --gb:rgba(0,136,255,0.15);
+}
+html{scroll-behavior:smooth}
+:target{scroll-margin-top:80px}
+section[id]{scroll-margin-top:80px}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+.pw{position:relative;z-index:1}
+.ticker{background:rgba(0,136,255,.1);border-bottom:1px solid var(--gb);padding:10px;text-align:center;font-size:12px;color:var(--t2);backdrop-filter:blur(10px)}
+.ticker strong{color:var(--cyan)}
+.tbadge{background:linear-gradient(90deg,#0088ff,#00d4ff);color:#fff;padding:2px 10px;border-radius:3px;margin:0 8px;font-size:10px;font-weight:800}
+nav{padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gb);position:sticky;top:0;z-index:100;background:rgba(3,6,15,.93);backdrop-filter:blur(20px)}
+.nlogo{display:flex;align-items:center;gap:12px}
+.nlogo img{width:52px;height:52px;border-radius:10px;object-fit:cover}
+.nlogo-t{font-size:22px;font-weight:900;letter-spacing:-1px}
+.nlogo-t span{background:linear-gradient(90deg,#0088ff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nlinks{display:flex;gap:28px}
+.nlinks a{font-size:13px;color:var(--t2);text-decoration:none;font-weight:500;transition:.15s}
+.nlinks a:hover{color:var(--cyan)}
+.nacts{display:flex;gap:10px}
+.ng{font-size:13px;color:var(--t2);text-decoration:none;font-weight:600;padding:8px 18px;border-radius:7px;border:1px solid var(--b2);transition:.15s}
+.ng:hover{color:var(--t);border-color:var(--cyan)}
+.np{font-size:13px;color:#fff;font-weight:700;padding:9px 20px;border-radius:7px;background:linear-gradient(135deg,#0066dd,#00aaff);text-decoration:none;box-shadow:0 4px 20px rgba(0,136,255,.3);transition:.15s}
+.np:hover{transform:scale(1.03);box-shadow:0 4px 28px rgba(0,136,255,.5)}
+.hero{min-height:88vh;padding:60px 6% 40px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,136,255,.1);border:1px solid rgba(0,136,255,.25);color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:100px;margin-bottom:28px}
+.hdot{width:6px;height:6px;border-radius:50%;background:#ff3344;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,51,68,.8)}70%{box-shadow:0 0 0 8px rgba(255,51,68,0)}}
+.hero h1{font-size:clamp(36px,4.5vw,56px);font-weight:900;line-height:1.06;letter-spacing:-2.5px;margin-bottom:22px}
+.grad{background:linear-gradient(135deg,#0088ff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-p{font-size:16px;color:var(--t2);line-height:1.75;margin-bottom:36px}
+.hero-p strong{color:var(--t)}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.hbtn1{background:linear-gradient(135deg,#0066dd,#00aaff);color:#fff;font-size:14px;font-weight:800;padding:16px 32px;border-radius:8px;text-decoration:none;box-shadow:0 8px 30px rgba(0,136,255,.35);transition:.2s;display:flex;align-items:center;gap:8px}
+.hbtn1:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,136,255,.5)}
+.hbtn2{background:rgba(0,136,255,.08);color:var(--t);font-size:14px;font-weight:600;padding:16px 28px;border-radius:8px;text-decoration:none;border:1px solid rgba(0,136,255,.2);transition:.2s}
+.hbtn2:hover{border-color:var(--cyan);color:var(--cyan)}
+.trust{display:flex;align-items:center;gap:14px}
+.avs{display:flex}
+.av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#0066dd,#004499);border:2px solid var(--bg);margin-left:-10px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+.av:first-child{margin-left:0}
+.trust-t{font-size:12px;color:var(--t3)}
+.trust-t strong{color:var(--cyan);display:block;font-size:13px;font-weight:800}
+.hr{position:relative;overflow:visible;padding:20px 24px 30px}
+.hglow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(0,136,255,.15),transparent 70%);pointer-events:none;animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+.hcard{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--gb);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05)}
+.hctop{background:rgba(0,136,255,.06);padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--gb)}
+.hclogo{width:24px;height:24px;border-radius:5px;object-fit:cover}
+.hctitle{font-size:12px;font-weight:700;flex:1;color:var(--t2)}
+.hlive{display:flex;align-items:center;gap:5px;background:rgba(255,51,68,.15);border:1px solid rgba(255,51,68,.3);border-radius:4px;padding:3px 8px;font-size:9px;font-weight:800;color:#ff6677}
+.hldot{width:5px;height:5px;border-radius:50%;background:#ff3344;animation:pulse 1s infinite}
+.hctabs{display:flex;border-bottom:1px solid var(--b);background:rgba(0,0,0,.2)}
+.hctab{flex:1;padding:9px 4px;text-align:center;font-size:9px;font-weight:700;color:var(--t3);border-bottom:2px solid transparent}
+.hctab.on{color:var(--cyan);border-bottom-color:var(--cyan)}
+.hcbody{padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hcc{background:rgba(0,0,0,.3);border:1px solid rgba(0,136,255,.12);border-radius:10px;padding:13px;transition:.2s}
+.hcc:hover{border-color:rgba(0,212,255,.25)}
+.hcl{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:4px}
+.hcl::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--cyan);display:block}
+.hcv{font-size:21px;font-weight:900;letter-spacing:-1px}
+.g{color:#00e676}.y{color:#ffc800}.w{color:var(--t)}
+.hcs{font-size:9px;margin-top:3px}
+.up{color:#00e676}.mu{color:var(--t3)}
+.hcfoot{padding:12px 14px;border-top:1px solid var(--b);display:flex;align-items:center;gap:12px}
+.hcbar{flex:1}
+.hcbarlbl{font-size:9px;color:var(--t3);margin-bottom:5px;display:flex;justify-content:space-between}
+.hctrack{height:4px;background:var(--b2);border-radius:100px;overflow:hidden}
+.hcfill{height:100%;width:0;background:linear-gradient(90deg,#0066dd,#00d4ff);border-radius:100px;transition:width 2.5s ease-out}
+.hcstat strong{font-size:11px;font-weight:800;color:#00e676;display:block}
+.hcstat span{font-size:9px;color:var(--t3)}
+.fbadge{position:absolute;background:rgba(8,15,32,.97);backdrop-filter:blur(16px);border:1px solid rgba(0,136,255,.3);border-radius:10px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.6);z-index:10;min-width:130px}
+.fb1{bottom:-10px;left:-20px;animation:fl 3s ease-in-out infinite}
+.fb2{top:10px;right:-20px;animation:fl 3s ease-in-out infinite 1.5s}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.fbl{font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.fbv{font-size:16px;font-weight:900}
+.fbs{font-size:9px;color:var(--t3);margin-top:2px}
+.featbar{background:rgba(6,13,26,.8);backdrop-filter:blur(10px);border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);display:flex;align-items:center;justify-content:center;overflow-x:auto}
+.fbi{display:flex;align-items:center;gap:8px;padding:16px 26px;font-size:12px;color:var(--t3);font-weight:600;white-space:nowrap;border-right:1px solid var(--b);transition:.2s}
+.fbi:last-child{border-right:none}
+.fbi:hover{color:var(--cyan);background:rgba(0,136,255,.05)}
+.sec{padding:80px 6%}
+.si{max-width:1100px;margin:0 auto}
+.eye{display:inline-block;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);padding:4px 14px;border-radius:3px;margin-bottom:14px}
+.sh{font-size:clamp(28px,3.5vw,44px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px}
+.sp{font-size:15px;color:var(--t2);line-height:1.75}
+.fl2{display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:center}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fc{background:rgba(8,15,32,.8);backdrop-filter:blur(10px);border:1px solid var(--gb);border-radius:12px;padding:22px;transition:.25s;position:relative;overflow:hidden}
+.fc::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:.25s}
+.fc:hover{border-color:rgba(0,212,255,.3);transform:translateY(-3px)}
+.fc:hover::before{opacity:1}
+.fi{font-size:22px;margin-bottom:12px}
+.fc h3{font-size:13px;font-weight:800;margin-bottom:6px;color:var(--t)}
+.fc p{font-size:11px;color:var(--t2);line-height:1.6}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:900px;margin:52px auto 0;position:relative}
+.howl{position:absolute;top:32px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,rgba(0,136,255,.2),rgba(0,212,255,.5),rgba(0,136,255,.2))}
+.step{text-align:center;padding:0 16px;z-index:1;position:relative}
+.snum{width:64px;height:64px;border-radius:50%;background:var(--bg);border:2px solid rgba(0,136,255,.3);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--cyan);margin:0 auto 18px}
+.step h4{font-size:14px;font-weight:800;margin-bottom:6px}
+.step p{font-size:12px;color:var(--t2);line-height:1.6}
+.pl{display:grid;grid-template-columns:1fr 2.2fr;gap:60px;align-items:start}
+.pcl{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.pcl li{font-size:13px;color:var(--t2);display:flex;align-items:center;gap:10px}
+.pcl li::before{content:"✓";min-width:20px;height:20px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.25);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--cyan)}
+.pc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%}
+.plan{background:rgba(8,15,32,.8);backdrop-filter:blur(16px);border:1px solid var(--gb);border-radius:16px;padding:30px;position:relative;transition:.25s}
+.plan:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.plan.hot{border-color:rgba(0,136,255,.4);background:linear-gradient(160deg,rgba(0,80,180,.1),rgba(0,136,255,.03));box-shadow:0 0 40px rgba(0,136,255,.08)}
+.pbadge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#0066dd,#00aaff);color:#fff;font-size:9px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;padding:4px 16px;border-radius:100px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,136,255,.4)}
+.pname{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:10px}
+.pprice{font-size:48px;font-weight:900;letter-spacing:-2.5px;line-height:1}
+.pprice sup{font-size:15px;font-weight:700;color:var(--cyan);vertical-align:top;margin-top:12px;letter-spacing:0}
+.pper{font-size:11px;color:var(--t3);margin-top:5px}
+.psave{font-size:11px;font-weight:700;color:#ffc800;margin-top:5px;margin-bottom:20px;min-height:17px}
+.psep{height:1px;background:linear-gradient(90deg,transparent,var(--b2),transparent);margin-bottom:18px}
+.pkeys{background:rgba(0,136,255,.08);border:1px solid rgba(0,136,255,.15);border-radius:6px;padding:9px 12px;margin-bottom:16px;font-size:11px;color:var(--cyan);font-weight:700;display:flex;align-items:center;gap:7px}
+.pfeat{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.pfeat li{font-size:12px;color:var(--t2);display:flex;align-items:center;gap:7px}
+.pfeat li::before{content:"✓";color:var(--cyan);font-size:10px;font-weight:900}
+.btn{width:100%;padding:14px;border-radius:8px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border:none;transition:.2s;text-decoration:none;display:block;text-align:center}
+.bb{background:linear-gradient(135deg,#0066dd,#00aaff);color:#fff;box-shadow:0 4px 20px rgba(0,136,255,.3)}
+.bb:hover{box-shadow:0 6px 28px rgba(0,136,255,.5);transform:scale(1.01)}
+.bo{background:rgba(0,136,255,.06);color:var(--cyan);border:1px solid rgba(0,136,255,.2)}
+.bo:hover{background:rgba(0,136,255,.12);border-color:var(--cyan)}
+.pnote{font-size:10px;color:var(--t3);text-align:center;margin-top:8px}
+.gar{border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);background:rgba(0,136,255,.03)}
+.gi{max-width:900px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:40px}
+.gsh{width:76px;height:76px;background:rgba(0,136,255,.1);border:2px solid rgba(0,136,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0}
+.gt h2{font-size:22px;font-weight:900;margin-bottom:8px;letter-spacing:-1px}
+.gt p{font-size:14px;color:var(--t2);line-height:1.7}
+.gn{background:linear-gradient(135deg,rgba(0,136,255,.12),rgba(0,136,255,.04));border:2px solid rgba(0,136,255,.3);border-radius:50%;width:76px;height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.gnn{font-size:28px;font-weight:900;color:var(--cyan);line-height:1}
+.gnl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.tc{background:rgba(8,15,32,.8);backdrop-filter:blur(10px);border:1px solid var(--gb);border-radius:14px;padding:24px;transition:.2s}
+.tc:hover{border-color:rgba(0,212,255,.25);transform:translateY(-2px)}
+.tcq{color:rgba(0,212,255,.4);font-size:40px;line-height:1;margin-bottom:8px}
+.tct{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:18px}
+.tca{display:flex;align-items:center;gap:10px}
+.tcav{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#0066dd,#004499);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+.tcn{font-size:13px;font-weight:700;color:var(--t)}
+.tcr{font-size:11px;color:var(--t3)}
+.stars{color:#ffc800;font-size:12px;margin-top:3px}
+.fql{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.fqi{border-bottom:1px solid var(--b);cursor:pointer}
+.fqq{font-size:14px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;color:var(--t)}
+.fqicon{color:var(--cyan);font-size:20px;flex-shrink:0;transition:.2s;line-height:1}
+.fqi.open .fqicon{transform:rotate(45deg)}
+.fqa{font-size:13px;color:var(--t2);line-height:1.7;padding-bottom:18px;display:none}
+.fqi.open .fqa{display:block}
+.fqcard{background:rgba(8,15,32,.8);backdrop-filter:blur(16px);border:1px solid rgba(0,136,255,.2);border-radius:16px;padding:36px;text-align:center}
+.fqcard h3{font-size:22px;font-weight:900;margin:16px 0 12px;letter-spacing:-1px}
+.fqcard p{font-size:13px;color:var(--t2);margin-bottom:28px;line-height:1.65}
+.fqbtn{display:block;background:linear-gradient(135deg,#0066dd,#00aaff);color:#fff;font-size:14px;font-weight:800;padding:15px;border-radius:8px;text-decoration:none;text-align:center;margin-bottom:12px;transition:.2s;box-shadow:0 4px 20px rgba(0,136,255,.3)}
+.fqbtn:hover{transform:scale(1.02)}
+.fqnote{font-size:11px;color:var(--t3)}
+.ctaend{padding:100px 6%;text-align:center;border-top:1px solid var(--gb);position:relative;overflow:hidden}
+.ctaend h2{font-size:clamp(32px,5vw,58px);font-weight:900;letter-spacing:-2.5px;line-height:1.06;margin-bottom:16px}
+.ctaend p{font-size:16px;color:var(--t2);margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.ctabtn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0066dd,#00aaff);color:#fff;font-size:15px;font-weight:800;padding:18px 52px;border-radius:10px;text-decoration:none;transition:.2s;box-shadow:0 8px 40px rgba(0,136,255,.35)}
+.ctabtn:hover{transform:translateY(-3px);box-shadow:0 14px 50px rgba(0,136,255,.5)}
+.ctabs{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:20px;flex-wrap:wrap}
+.ctab{font-size:11px;color:var(--t3);display:flex;align-items:center;gap:5px}
+.ctab span{color:var(--cyan)}
+footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:rgba(3,6,15,.8);backdrop-filter:blur(10px)}
+.flogo{display:flex;align-items:center;gap:8px}
+.flogo img{width:26px;height:26px;border-radius:5px;object-fit:cover}
+.flogot{font-size:14px;font-weight:900;letter-spacing:-1px}
+.flogot span{background:linear-gradient(90deg,#0088ff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.flinks{display:flex;gap:20px}
+.flinks a{font-size:11px;color:var(--t3);text-decoration:none;transition:.15s}
+.flinks a:hover{color:var(--cyan)}
+.fcopy{font-size:11px;color:var(--t3)}
+
+
+/* ═══════════════════════════════════════
+   RESPONSIVIDADE COMPLETA
+   - Desktop largo: > 1200px (padrão)
+   - Desktop normal: 901px - 1199px
+   - Tablet: 601px - 900px
+   - Mobile: ≤ 600px
+═══════════════════════════════════════ */
+
+/* DESKTOP NORMAL */
+@media(max-width:1199px){
+  .hero{gap:40px;padding:60px 4% 40px}
+  .fl2{gap:40px}
+  .fql{gap:40px}
+  .plans-right,.pc{gap:12px}
+}
+
+/* TABLET */
+@media(max-width:900px){
+  /* Nav */
+  nav{padding:0 4%}
+  .nlinks{display:none}
+  .nlogo-t{font-size:18px}
+
+  /* Hero */
+  .hero{grid-template-columns:1fr;min-height:auto;padding:50px 5% 40px;gap:40px}
+  .hr{display:none}
+  .hero h1{font-size:clamp(32px,6vw,48px);letter-spacing:-2px}
+  .hbtns{gap:10px}
+
+  /* Seções com 2 colunas */
+  .fl2{grid-template-columns:1fr;gap:36px}
+  .fg{grid-template-columns:1fr 1fr}
+  .fql{grid-template-columns:1fr;gap:36px}
+
+  /* Como funciona */
+  .how{grid-template-columns:1fr 1fr;gap:28px}
+  .howl{display:none}
+
+  /* Planos */
+  div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr !important}
+
+  /* Depoimentos */
+  .tg{grid-template-columns:1fr}
+
+  /* Garantia */
+  .gi{grid-template-columns:1fr;text-align:center;gap:20px}
+
+  /* Seções novas */
+  div[style*="grid-template-columns:1fr 1fr;gap:60px"]{grid-template-columns:1fr !important;gap:36px !important}
+  div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr 1fr !important}
+  div[style*="grid-template-columns:1fr 1fr;gap:20px"]{grid-template-columns:1fr !important}
+
+  /* Feat bar */
+  .featbar{flex-wrap:wrap;justify-content:flex-start}
+  .fbi{flex:0 0 auto;border-right:none;border-bottom:1px solid var(--b)}
+
+  /* Sticky bar */
+  #sticky-bar{padding:10px 4%}
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  /* Nav */
+  nav{padding:0 4%;height:60px}
+  .nlogo img{width:38px;height:38px}
+  .nlogo-t{font-size:16px}
+  .np{padding:8px 14px;font-size:12px}
+
+  /* Ticker */
+  .ticker{font-size:10px;padding:8px 3%}
+  .tbadge{display:none}
+
+  /* Viewers bar */
+  #viewers-bar{font-size:11px;flex-wrap:wrap;gap:4px;padding:8px 4%}
+
+  /* Hero */
+  .hero{padding:36px 5% 30px;gap:28px}
+  .hero h1{font-size:clamp(28px,8vw,40px);letter-spacing:-1.5px;line-height:1.05}
+  .hbadge{font-size:10px;padding:5px 12px}
+  .hero-p{font-size:14px;margin-bottom:24px}
+  .hbtns{flex-direction:column;gap:10px}
+  .hbtn1,.hbtn2{width:100%;justify-content:center;text-align:center;padding:14px 20px}
+  .trust{flex-direction:column;align-items:flex-start;gap:6px}
+
+  /* Feat bar */
+  .featbar{flex-wrap:wrap}
+  .fbi{padding:10px 14px;font-size:11px;border-right:none;border-bottom:1px solid var(--b);flex:1;min-width:45%}
+
+  /* Seções */
+  .sec{padding:48px 5%}
+  .sh{font-size:clamp(24px,6vw,32px);letter-spacing:-1px;margin-bottom:10px}
+  .sp{font-size:14px}
+  .eye{font-size:9px;letter-spacing:2px}
+
+  /* Features grid */
+  .fg{grid-template-columns:1fr}
+  .fc{padding:18px}
+
+  /* Como funciona */
+  .how{grid-template-columns:1fr;gap:20px}
+  .howl{display:none}
+  .snum{width:48px;height:48px;font-size:16px}
+
+  /* Planos */
+  div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr !important}
+  .plan{padding:22px 18px}
+  .pprice{font-size:40px}
+  .pkeys{font-size:10px}
+
+  /* Seções novas adicionadas */
+  div[style*="grid-template-columns:1fr 1fr;gap:60px"]{grid-template-columns:1fr !important;gap:24px !important}
+  div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr !important}
+  div[style*="grid-template-columns:1fr 1fr;gap:20px"]{grid-template-columns:1fr !important;gap:12px !important}
+  div[style*="grid-template-columns:1fr 1fr;gap:14px"]{grid-template-columns:1fr !important}
+
+  /* Comparativo COM vs SEM */
+  div[style*="grid-template-columns:1fr 1fr;gap:20px"]{grid-template-columns:1fr !important}
+
+  /* Depoimentos */
+  .tg{grid-template-columns:1fr}
+  .tc{padding:18px}
+
+  /* Garantia */
+  .gi{flex-direction:column;gap:16px;text-align:center;align-items:center}
+  .g-shield,.g-num,.gsh,.gn{margin:0 auto}
+  .gt h2,.g-text h2{font-size:20px}
+
+  /* FAQ */
+  .fql{grid-template-columns:1fr}
+  .fqcard{padding:24px 20px}
+  .fqcard h3{font-size:18px}
+  .fqq{font-size:13px}
+
+  /* Selos de segurança */
+  div[style*="display:flex;align-items:center;justify-content:center;gap:0"]{flex-direction:column}
+  div[style*="border-right:1px solid rgba(0,136,255,.1)"]{border-right:none !important;border-bottom:1px solid rgba(0,136,255,.1)}
+
+  /* Card urgência */
+  div[style*="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px"]{flex-direction:column;align-items:flex-start}
+
+  /* CTA final */
+  .ctaend{padding:60px 5%}
+  .ctaend h2{font-size:clamp(26px,7vw,40px);letter-spacing:-1.5px}
+  .ctabtn{padding:16px 32px;font-size:14px;width:100%;justify-content:center}
+  .ctabs{gap:12px}
+
+  /* Sticky bar */
+  #sticky-bar{flex-direction:column;gap:8px;padding:10px 4%;text-align:center}
+  #sticky-bar > div:first-child{display:none}
+
+  /* Popup */
+  #buy-popup{max-width:240px;bottom:70px;left:12px}
+
+  /* Footer */
+  footer{flex-direction:column;align-items:center;gap:10px;padding:20px 4%;text-align:center}
+  .flinks{flex-wrap:wrap;justify-content:center;gap:12px}
+
+  /* Seção autoridade stats grid */
+  div[style*="grid-template-columns:1fr 1fr;gap:14px"]{grid-template-columns:1fr 1fr !important}
+}
+
+/* MOBILE PEQUENO */
+@media(max-width:380px){
+  .hero h1{font-size:26px}
+  .hbtn1,.hbtn2{font-size:13px;padding:13px 16px}
+  .pprice{font-size:36px}
+  nav{padding:0 3%}
+  .sec{padding:40px 4%}
+}
+
+/* ═══════════════════════════════════════
+   ANIMAÇÕES E MOVIMENTO
+═══════════════════════════════════════ */
+
+/* SCROLL REVEAL — elementos entram ao aparecer na tela */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .6s ease,transform .6s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .6s ease,transform .6s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .5s ease,transform .5s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* DELAY de entrada em sequência */
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* BOTÃO PRINCIPAL — pulsa suavemente para chamar atenção */
+.hbtn1,.btn-cta,.fqbtn,.ctabtn{
+  animation:none;
+  position:relative;
+  overflow:hidden;
+}
+.hbtn1::after,.ctabtn::after,.fqbtn::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.12) 50%,transparent 100%);
+  transform:translateX(-100%);
+  transition:transform .5s ease;
+}
+.hbtn1:hover::after,.ctabtn:hover::after,.fqbtn:hover::after{
+  transform:translateX(100%);
+}
+
+/* BOTÃO CTA PRINCIPAL — pulsa para chamar atenção */
+@keyframes ctapulse{
+  0%,100%{box-shadow:0 8px 30px rgba(0,136,255,.35)}
+  50%{box-shadow:0 8px 45px rgba(0,136,255,.65),0 0 0 6px rgba(0,136,255,.1)}
+}
+.hbtn1{animation:ctapulse 2.5s ease-in-out infinite}
+.hbtn1:hover{animation:none}
+
+/* BOTÃO VERMELHO (trimestral) — pulsa em vermelho */
+@keyframes redpulse{
+  0%,100%{box-shadow:0 4px 20px rgba(255,51,68,.3)}
+  50%{box-shadow:0 4px 32px rgba(255,51,68,.6),0 0 0 5px rgba(255,51,68,.08)}
+}
+.bb{animation:redpulse 2s ease-in-out infinite}
+.bb:hover{animation:none;transform:scale(1.02)}
+
+/* CARDS — hover com lift suave */
+.fc,.tc,.plan,.diff-item{
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease !important;
+}
+.fc:hover{transform:translateY(-4px) !important;box-shadow:0 16px 40px rgba(0,0,0,.4) !important}
+.tc:hover{transform:translateY(-3px) !important;box-shadow:0 12px 32px rgba(0,0,0,.4) !important}
+
+/* FEAT BAR ITEMS — slide left/right hover */
+.fbi{transition:color .2s ease,background .2s ease,transform .2s ease}
+.fbi:hover{transform:translateX(4px)}
+
+/* NÚMEROS DE STAT — counter animation via JS */
+.stat-counter{display:inline-block}
+
+/* LIVE DOT — já tem pulse, adicionar glow extra */
+.ldot,.hldot{
+  animation:liveglow 1.2s ease-in-out infinite !important;
+}
+@keyframes liveglow{
+  0%,100%{box-shadow:0 0 6px #ff3344,0 0 0 0 rgba(255,51,68,.6)}
+  50%{box-shadow:0 0 12px #ff3344,0 0 0 6px rgba(255,51,68,0)}
+}
+
+/* FLOAT BADGES — movimento mais suave */
+.fbadge{animation:floatsmooth 4s ease-in-out infinite !important}
+.fb2{animation-delay:2s !important}
+@keyframes floatsmooth{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  33%{transform:translateY(-8px) rotate(.5deg)}
+  66%{transform:translateY(-4px) rotate(-.3deg)}
+}
+
+/* HERO GLOW — respiração mais visível */
+.hglow{animation:breathe 5s ease-in-out infinite}
+@keyframes breathe{
+  0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}
+}
+
+/* STICKY BAR CTA — shimmer no botão */
+#sticky-bar a{position:relative;overflow:hidden}
+#sticky-bar a::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:translateX(-100%);
+  animation:shimmer 3s ease infinite 2s;
+}
+@keyframes shimmer{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(200%)}
+}
+
+/* URGENCY CARD — pisca levemente */
+@keyframes urgencypulse{
+  0%,100%{border-color:rgba(255,51,68,.35)}
+  50%{border-color:rgba(255,51,68,.7)}
+}
+#urgency-card{animation:urgencypulse 2s ease-in-out infinite}
+
+/* VAGAS — contador vermelho pisca */
+@keyframes vagaspulse{
+  0%,100%{color:#ff3344}
+  50%{color:#ff6677}
+}
+.vagas-num{animation:vagaspulse 1.5s ease-in-out infinite}
+
+/* PLAN FEATURED — brilho na borda */
+@keyframes planborder{
+  0%,100%{border-color:rgba(0,136,255,.4)}
+  50%{border-color:rgba(0,212,255,.8);box-shadow:0 0 30px rgba(0,136,255,.15)}
+}
+.plan.hot.visible{animation:planborder 3s ease-in-out infinite}.plan.hot.reveal{opacity:0;transform:translateY(32px)}.plan.hot.reveal.visible{opacity:1;transform:translateY(0)}
+.plan.hot:hover{animation:none}
+
+/* STEP CIRCLES — bounce no hover */
+.snum{transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.step:hover .snum{transform:scale(1.15);border-color:var(--cyan);background:rgba(0,136,255,.1)}
+
+/* SECTION TITLES — underline animado */
+.sh .grad{position:relative}
+.sh .grad::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,#0088ff,#00d4ff);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .6s ease;
+}
+.reveal.visible .sh .grad::after{transform:scaleX(1);transition-delay:.4s}
+
+/* COMPARATIVO ITEMS — entrada em stagger */
+.comp-item{
+  opacity:0;
+  transform:translateX(-20px);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.comp-item.right{transform:translateX(20px)}
+.comp-item.visible{opacity:1;transform:translateX(0)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+
+/* MOBILE — garante que reveal funciona mesmo sem JS perfeito */
+@media(max-width:600px){
+  .reveal,.reveal-left,.reveal-right,.reveal-scale{
+    transition-duration:.4s !important;
+    transition-delay:0s !important;
+  }
+  .d1,.d2,.d3,.d4,.d5{transition-delay:0s !important}
+}
+
+
+/* MOBILE NUCLEAR FIX — desativa reveal no mobile, mostra tudo */
+@media(max-width:900px){
+  .reveal,.reveal-left,.reveal-right,.reveal-scale{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+  .d1,.d2,.d3,.d4,.d5{
+    transition-delay:0s !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+  .plan.hot{
+    opacity:1 !important;
+    transform:none !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   SISTEMA DE NOTIFICAÇÕES ANIMADAS
+═══════════════════════════════════════ */
+#notif-stack{
+  position:fixed;
+  top:80px;
+  right:20px;
+  z-index:997;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  pointer-events:none;
+}
+.notif{
+  background:rgba(8,15,32,.97);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(0,136,255,.2);
+  border-radius:12px;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:280px;
+  max-width:320px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  transform:translateX(120%);
+  opacity:0;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1), opacity .3s ease;
+  pointer-events:none;
+}
+.notif.show{
+  transform:translateX(0);
+  opacity:1;
+}
+.notif.hide{
+  transform:translateX(120%);
+  opacity:0;
+  transition:transform .3s ease, opacity .25s ease;
+}
+.notif-icon{
+  width:36px;
+  height:36px;
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  flex-shrink:0;
+}
+.notif-icon.green{background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.2)}
+.notif-icon.red{background:rgba(255,51,68,.12);border:1px solid rgba(255,51,68,.2)}
+.notif-icon.yellow{background:rgba(255,200,0,.12);border:1px solid rgba(255,200,0,.2)}
+.notif-icon.blue{background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.2)}
+.notif-title{font-size:12px;font-weight:800;color:#fff;margin-bottom:2px}
+.notif-sub{font-size:11px;color:#7a9cc0;line-height:1.4}
+.notif-time{font-size:9px;color:#3a5878;margin-top:3px}
+.notif-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-left:auto;margin-top:2px;align-self:flex-start}
+.notif-dot.green{background:#00e676;box-shadow:0 0 6px #00e676}
+.notif-dot.red{background:#ff3344;box-shadow:0 0 6px #ff3344}
+.notif-dot.yellow{background:#ffc800;box-shadow:0 0 6px #ffc800}
+.notif-dot.blue{background:#00d4ff;box-shadow:0 0 6px #00d4ff}
+
+@media(max-width:600px){
+  #notif-stack{right:10px;top:70px}
+  .notif{min-width:240px;max-width:calc(100vw - 20px);padding:10px 12px}
+  .notif-title{font-size:11px}
+  .notif-sub{font-size:10px}
+}
+
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<!-- SISTEMA DE NOTIFICAÇÕES -->
+<div id="notif-stack"></div>
+
+<div class="pw">
+<!-- PESSOAS VENDO AGORA -->
+<div id="viewers-bar" style="text-align:center;padding:12px;background:rgba(0,136,255,.05);border-bottom:1px solid rgba(0,136,255,.1);font-size:12px;color:#7a9cc0;display:flex;align-items:center;justify-content:center;gap:8px">
+  <div style="display:flex;gap:3px;align-items:center">
+    <div style="width:6px;height:6px;border-radius:50%;background:#00e676;animation:pulse 1.5s infinite"></div>
+  </div>
+  <span><strong style="color:#00e676" id="viewers-count">134</strong> pessoas estão vendo esta página agora</span>
+  <span style="color:#3a5878">·</span>
+  <span><strong style="color:#ffc800" id="today-count">47</strong> compraram hoje</span>
+</div>
+<div class="ticker">🔥 LANÇAMENTO OFICIAL <span class="tbadge">OFERTA ESPECIAL</span> — <strong>2 dispositivos inclusos</strong> em todos os planos &nbsp;·&nbsp; Garanta antes que os preços subam</div>
+
+<nav>
+  <div class="nlogo"><img src="data:image/jpeg;base64,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" alt="Logo"><div class="nlogo-t">Work<span>Live</span></div></div>
+  <div class="nlinks"><a href="#recursos">Recursos</a><a href="#como-funciona">Como funciona</a><a href="#planos">Planos</a><a href="#depoimentos">Depoimentos</a><a href="#faq">FAQ</a></div>
+  <div class="nacts"><a href="#planos" class="np">Começar Agora →</a></div>
+</nav>
+<div style="background:linear-gradient(180deg,var(--s1) 0%,var(--bg) 100%);padding-bottom:40px">
+<div class="hero">
+  <div>
+    <div class="hbadge"><span class="hdot"></span>Lives gravadas · Automação · Escala</div>
+    <h1><span class="grad">Sua live vende enquanto você dorme.</span><br><span style="font-size:clamp(22px,3vw,36px);font-weight:700;color:#ddeeff;letter-spacing:-1px">Você transmite. A gente gerencia tudo.</span></h1>
+    <p class="hero-p">Automatize, monitore e gerencie suas lives no TikTok Shop — mesmo com lives gravadas, a WorkLive trabalha por você. <strong>Você não precisa estar ao vivo para sua transmissão funcionar.</strong></p>
+    <div class="hbtns"><a href="#planos" class="hbtn1">Começar Agora →</a><a href="#como-funciona" class="hbtn2">▶ Ver Demonstração</a></div>
+    
+  </div>
+  <div class="hr">
+    <div class="hglow"></div>
+    <div class="fbadge fb2"><div class="fbl">GMV hoje</div><div class="fbv" style="color:var(--cyan)">R$ 1.284</div><div class="fbs" style="color:#00e676">↑ +6.9% vs ontem</div></div>
+    <div class="hcard">
+      <div class="hctop"><img src="data:image/jpeg;base64,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" class="hclogo" alt=""><div class="hctitle">WorkLive — Painel</div><div class="hlive"><span class="hldot"></span>AO VIVO</div></div>
+      <div class="hctabs"><div class="hctab on">Início</div><div class="hctab">Dashboard</div><div class="hctab">Chat</div><div class="hctab">Central</div><div class="hctab">Áudio</div></div>
+      <div class="hcbody">
+        <div class="hcc"><div class="hcl">GMV Atribuído</div><div class="hcv g">R$ 1.284</div><div class="hcs up">↑ +6.9% vs ontem</div></div>
+        <div class="hcc"><div class="hcl">Espectadores</div><div class="hcv w">83</div><div class="hcs mu">Pico: 139</div></div>
+        <div class="hcc"><div class="hcl">Itens Vendidos</div><div class="hcv y">15</div><div class="hcs up">↑ vs ontem +3</div></div>
+        <div class="hcc"><div class="hcl">Ticket Médio</div><div class="hcv w">R$ 85,60</div><div class="hcs mu">GMV ÷ vendas</div></div>
+      </div>
+      <div class="hcfoot">
+        <div class="hcbar">
+          <div class="hcbarlbl"><span>Meta diária</span><span style="color:var(--cyan)" id="pct">0%</span></div>
+          <div class="hctrack"><div class="hcfill" id="bar"></div></div>
+        </div>
+        <div class="hcstat"><strong>Ativa</strong><span>Conexão</span></div>
+      </div>
+    </div>
+    <div class="fbadge fb1"><div class="fbl">Última venda</div><div class="fbv g">R$ 39,99</div><div class="fbs">Há 2 min ↑</div></div>
+  </div>
+</div>
+</div>
+
+<div class="featbar">
+  <div class="fbi">📊 Dashboard Completo</div><div class="fbi">⏱ Timer Inteligente</div><div class="fbi">⚡ Alertas em Tempo Real</div><div class="fbi">🤖 Automações Avançadas</div><div class="fbi">🎙️ Camada Sonora</div><div class="fbi">💬 Chat ao Vivo</div>
+</div>
+
+
+
+<!-- SEÇÃO PARA QUEM É -->
+<section style="padding:70px 6%;background:var(--bg);border-bottom:1px solid var(--gb)">
+  <div style="max-width:960px;margin:0 auto;text-align:center">
+    <div class="eye reveal">Para quem é</div>
+    <h2 class="sh" style="margin-bottom:12px">A WorkLive foi feita <span class="grad">para você</span> se...</h2>
+    <p class="sp" style="max-width:560px;margin:0 auto 40px">Lives gravadas, lives ao vivo, múltiplas transmissões ou equipe de operação — se você vende pelo TikTok Shop, a WorkLive foi feita pra você.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left">
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:24px;flex-shrink:0">🎬</span>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você roda lives gravadas</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Transmite conteúdo pré-gravado e quer que tudo funcione no automático — sem precisar estar presente na frente da câmera.</div></div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:24px;flex-shrink:0">🚀</span>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você quer escalar e rodar múltiplas lives</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Quer operar mais de uma transmissão ao mesmo tempo e precisar de um painel que monitore tudo em paralelo.</div></div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:24px;flex-shrink:0">😤</span>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você está cansado de fazer tudo na mão</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Gerenciar chat, fixar produto, bloquear usuário e ainda vender ao mesmo tempo — é impossível sem automação.</div></div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:24px;flex-shrink:0">📱</span>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você faz lives ao vivo no TikTok Shop</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Quer controle total do que está acontecendo — métricas, vendas, chat e alertas — sem tirar o olho da câmera.</div></div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:24px;flex-shrink:0">📲</span>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você opera em múltiplos dispositivos</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Cada plano vem com 2 chaves de acesso. Rode e monitore lives em dois computadores ao mesmo tempo — escale sem limite.</div></div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
+        <span style="font-size:24px;flex-shrink:0">💰</span>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você quer profissionalizar a operação</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Sair do amador e ter uma operação de live commerce automatizada, monitorada e lucrativa — mesmo dormindo.</div></div>
+      </div>
+    </div>
+    <a href="#planos" class="hbtn1" style="display:inline-flex;margin-top:40px;font-size:14px;padding:16px 40px">Quero automatizar minhas lives agora →</a>
+  </div>
+</section>
+
+
+<!-- SEÇÃO CELULAR + NOTIFICAÇÕES + PROTEÇÃO -->
+<section style="padding:80px 6%;background:linear-gradient(180deg,#060d1a 0%,#03060f 100%);border-top:1px solid rgba(0,136,255,.15);border-bottom:1px solid rgba(0,136,255,.15);overflow:hidden;position:relative">
+
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+
+    <!-- IMAGEM REAL DO CELULAR -->
+    <div style="display:flex;justify-content:center;align-items:center;position:relative">
+      <img 
+        src="data:image/png;base64,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+c9/uny4swsPD2fWrFk8+OCDfPnllwCcOXOGyMhIAgICaj1OcHAwFouFkJAQIiIiCAoKcvy7MiqfDSR3hklzBtOsWbOIiYlh8eLFXL161WXdjh07OH36NP369WP06NHExsYyfvx4rl+/zooVK0hMTKRr1658++235Obmsnv3bgoLC7nvvvuIjIx02Ze/vz/jx4+nXbt2fPXVV5SWltZoS0P727FjB6dOnWLw4MGMGjWK+Ph4fvrTn3Lx4kU2btzosq85c+YQFhbG0KFDAVvXJMCuXbu4dOkSffr04f7776dXr1488MADdZ6futodFRXl8n+RlurMmTNERESQnJxMYmIilZWu30k9f/48OTk5VFRUADjuSZ8/f56vv/6aFStWcPz4cXbs2EF+fn6N/duDzxf4ZCA1V3g0x34DAgJ45plnuHjxIu+9957LOnsXlcVicSzr3LkzYOvK8/PzY8qUKYCtqtmwYQNgq04Abt68yYsvvsigQYPo2rUrFouFa9euAXDhwoUabWlof/b27N+/39Gdtm7dOgCys7Nd9mU2m4EfK5ibN28Ctn8kzuur/9zYdnfr1g2Arl271ngfIi1JdHQ0Z8+eZe3atVy+XHOktcVi4cyZM3zwwQekp6dzzz33ADB06FBSUlJISUmhd+/ejB071uVa4ouMXb/Vorm72CyWaLcPekhOTiYtLc3RVWYXExMD4PKpxj6k035BTkpKYvHixXz00UecPXuWkJAQHnroIQA+/vhjli1bRv/+/dmxYwehoaHExMRQXl7uCIjq6tufvT333HNPjYqoseyjfaxWq2OZ88+NbXd4eHitn/ZEfFV4eDiJiYmO3x9++GEAQkJCmDBhQp2va9u2LYmJiS6vrc4eUvUdp/rPRuRTFZKnBiK4+zht27bl2WefrVGKjxkzhri4OI4cOcKuXbvIzc1l48aN+Pv7M2vWLAB69erFwIEDycrKori4mIcffpjAwEDAdg8IcPQhv/POO45ldalvf2PGjCE+Pp59+/axadMmSktLOXToEE899RRff/11o97r6NGjsVgsHD16lM8//5yTJ0+yfft2l20a024N+xZpfXymQvJUGDkfz52V0sSJE0lLSyMrK8uxLCgoiHXr1vGb3/yGuXPnUlZWRkJCAm+//TZ9+/Z1bJecnMzBgwcdP9tNnjyZ9PR0Nm/ezJ133tnottS1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aihkbrWScnYQ1/sGA6umAPH17y61dg0N+26qkpISVq9ezS9+8Qu37E/EqDQf0i1ydxjVtUx8T1hYmNvCCGyDExRGIs3DJwKpOauU+oJHoSQi4jk+EUjNpTGBk2fp54GWiIiIzwSS7uWIiLRsPhNIoFASEWnJfCqQQKEkItJS+VwggftCaWD9oxkB6JZ/xC3HEhGR+vlkIIH7Jt2rL5QURiIinuPzT2q4nfmNnAOt+mg6hZGIiGf5fCDZNSWYaqusFEAiIt7VYgLJToMeRER8k8/eQxIRkZZFgSQiIobglUCKi+tiys1V15qIiBE5Penbo1QhiYiIISiQRESkLg0/PcCNvBZI6rYTETEeb3XXgZcrpLi4LhEKJRERY/BmGIH3u+w8Wg6KiEijefz67O1AUtediIgBVKuOvFIsGOJJDXFxXSJycs5dBoiNbfoz6URE5NbYCwJvdtXZGSKQgAL7ycjJOXdZoSQi0vzquGfktVspRgkksJ2EcOdqCVQxiYi4k/MtEiOFERgrkKDqZDifJOdwEhGR21NH15whBpgZLZDsCoBwMEa/pohIC2aIMALjBhK4nqRwr7VCRKTlMUwIOTNyIDkz5MkTERH38fr3kERERECBJCIiBqFAEhERQ1AgiYiIISiQRETEEBRIIiJiCAokERExBAWSiIgYggJJREQMQYEkIiKGoEASERFDUCCJiIghKJBERMQQFEgiImIICiQRETEEBZKIiBiCAklERAxBgSQiIoagQBIREUNQIImIiCEokERExBAUSCIiYggKJBERMQQFkoiIGIICSUREDEGBJCIihqBAEhERQ1AgiYiIISiQRETEEBRIIiJiCAokERExBAWSiIgYggJJREQMQYEkIiKGoEASERFDUCCJiIghKJBERMQQFEgiImIICiQRETEEBZKIiBiCAklERAxBgSQiIoagQBIREUNQIImIiCEokERExBAUSCIiYggKJBERMQQFkoiIGIICSUREDEGBJCIihqBAEhERQ1AgiYiIISiQRETEEBRIIiJiCAokERExBAWSiIgYggJJREQMQYEkIiKGoEASERFDUCCJiIghKJBERMQQFEgiImIICiQRETEEBZKIiBiCAklERAxBgSQiIoagQBIREUNQIImIiCEokERExBAUSCIiYggKJBERMQQFkoiIGIICSUREDEGBJCIihqBAEhERQ1AgiYiIISiQRETEEBRIIiJiCAokERExBAWSiIgYggJJREQMQYEkIiKGoEASERFDUCCJiIghKJBERMQQFEgiImIICiQRETEEBZKIiBiCAklERAxBgSQiIoagQBIREUNQIImIiCEokERExBAUSCIiYggKJBERMQQFkoiIGIICSUREDEGBJCIihqBAEhERQ1AgiYiIISiQRETEEBRIIiJiCAokERExBAWSiIgYggJJREQMQYEkIiKGoEASERFDUCCJiIghKJBERMQQFEgiImIICiQRETEEBZKIiBiCAklERAxBgSQiIoagQBIREUNQIImIiCEokERExBAUSCIiYggKJBERMQQFkoiIGIICSUREDEGBJCIihqBAEhERQ1AgiYiIISiQRETEEBRIIiJiCAokERExBAWSiIgYggJJREQMQYEkIiKGoEASERFDUCCJiIghKJBERMQQFEgiImIItxVIuat6mqovi51+svJ29ikiIr6htut9bbnQWKqQRETEEBRIIiJiCAokERExhGYJJN1HEhFp2ZrjOn/bgXQ7N7BERKTluN08UJediIgYggJJREQMwS2BpO8jiYi0Hu7+/pGdKiQRETGEZg0kVUkiIi1Lc17X3RZIGm0nItI6uev63+xddqqSRERahua+nrs1kFQliYi0Lu687ntkUIOqJBER3+aJ67jbA0lVkohI6+Du673Hhn2rShIR8U2eun43SyDVlZoKJRER31LXdbs5esOarUJSKImI+DZPhhHoSQ0iImIQzRpIqpJERHyTp6sj8ECFpFASEfEt3ggj8FCXnUJJRMQ3eCuMwAD3kBRKIiLG4O3rsccCqb509fZJEBFp7eq7DnvqgQcef6pCQ+GjJz2IiHiOka7JHu+ya+jNqVoSEfEMI4UReOkekkJJRMS7jBZG4IUuu+qMeFJERFoqI19zDXGxb0xFpGASEbl1vnCdNcxFvrHddN4+YSIivsSXrq1eb0B1vnTyRESMyhevpYZpiLNbGdRgpJMqIuJpLeG6aajGVHc7o+2MdqJFRNypJV4fDdmo6jQMXETk9hk1iOwM3bjqFEwiIk1n9CCy84lG1kbhJCJSN18JIWc+1+DaKJxERHwzhJz5dOPro5ASkZbM18NHRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE3On/B7FClZyTsxoyAAAAAElFTkSuQmCC" 
+        alt="Notificações do WorkLive no celular" 
+        style="width:100%;max-width:340px;height:auto;filter:drop-shadow(0 0 40px rgba(0,136,255,.4)) drop-shadow(0 20px 60px rgba(0,0,0,.8));animation:floatsmooth 5s ease-in-out infinite"
+      >
+    </div>
+
+    <!-- DIREITA: TEXTO -->
+    <div class="reveal-right">
+      <div class="eye">Fique por dentro de tudo</div>
+      <h2 class="sh" style="margin-bottom:16px">A ferramenta avisa voce.<br><span class="grad">Onde quer que esteja.</span></h2>
+      <p class="sp" style="margin-bottom:28px">A WorkLive dispara notificacoes em tempo real direto no seu celular — cada venda, alerta de violacao e encerramento automatico. Acompanhe tudo pelo WorkLive Mobile sem precisar estar na frente do computador.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,51,68,.06);border:1px solid rgba(255,51,68,.2);border-radius:12px">
+          <div style="width:38px;height:38px;border-radius:9px;background:rgba(255,51,68,.12);border:1px solid rgba(255,51,68,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🛡️</div>
+          <div><div style="font-size:14px;font-weight:800;color:#ff6677;margin-bottom:4px">Protecao contra violacoes</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Detecta avisos da plataforma e encerra a live automaticamente antes de virar punicao. Sua conta protegida mesmo sem voce olhando.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,200,0,.06);border:1px solid rgba(255,200,0,.2);border-radius:12px">
+          <div style="width:38px;height:38px;border-radius:9px;background:rgba(255,200,0,.12);border:1px solid rgba(255,200,0,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">⏱</div>
+          <div><div style="font-size:14px;font-weight:800;color:#ffc800;margin-bottom:4px">Timer inteligente</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Define o tempo maximo da live e ela encerra sozinha no horario certo. Notificacao de encerramento direto no celular.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.06);border:1px solid rgba(0,136,255,.2);border-radius:12px">
+          <div style="width:38px;height:38px;border-radius:9px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🔔</div>
+          <div><div style="font-size:14px;font-weight:800;color:#00d4ff;margin-bottom:4px">Alerta de nova venda</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Cada venda gera notificacao instantanea com valor, total de itens e GMV acumulado. Acompanhe em tempo real pelo celular.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SEÇÃO AUTORIDADE -->
+<section style="padding:70px 6%;background:var(--bg);border-bottom:1px solid var(--gb)">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+    <div>
+      <div class="eye reveal">Pioneira no mercado</div>
+      <h2 class="sh">A ferramenta mais <span class="grad">completa e prática</span> para quem faz live no TikTok Shop.</h2>
+      <p class="sp" style="margin-top:14px;margin-bottom:28px">Configure uma vez e deixe rodar. Com lives gravadas ou ao vivo, a WorkLive automatiza, monitora e gerencia tudo — enquanto você descansa, vende ou cuida de outro negócio.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.05);border:1px solid rgba(0,136,255,.12);border-radius:10px">
+          <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏆</div>
+          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Pioneira no Live Commerce brasileiro</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Uma das primeiras ferramentas de automação 100% focada em TikTok Shop Live Commerce no Brasil.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.05);border:1px solid rgba(0,136,255,.12);border-radius:10px">
+          <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🤖</div>
+          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Trabalha enquanto você descansa</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">As automações rodam sozinhas durante toda a live. Você foca em vender, a ferramenta cuida do resto.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.05);border:1px solid rgba(0,136,255,.12);border-radius:10px">
+          <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">⚡</div>
+          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">A mais prática do mercado</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Instala em 5 minutos, zero configuração técnica. Se você sabe usar o Chrome, já sabe usar a WorkLive.</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:14px;padding:28px;text-align:center">
+        <div style="font-size:42px;font-weight:900;color:#00d4ff;letter-spacing:-2px;line-height:1">2s</div>
+        <div style="font-size:12px;color:#7a9cc0;margin-top:6px;text-transform:uppercase;letter-spacing:1px">Atualização em tempo real</div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:14px;padding:28px;text-align:center">
+        <div style="font-size:42px;font-weight:900;color:#00e676;letter-spacing:-2px;line-height:1">5min</div>
+        <div style="font-size:12px;color:#7a9cc0;margin-top:6px;text-transform:uppercase;letter-spacing:1px">Para instalar e usar</div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:14px;padding:28px;text-align:center">
+        <div style="font-size:42px;font-weight:900;color:#ffc800;letter-spacing:-2px;line-height:1">24/7</div>
+        <div style="font-size:12px;color:#7a9cc0;margin-top:6px;text-transform:uppercase;letter-spacing:1px">Automações ativas</div>
+      </div>
+      <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:14px;padding:28px;text-align:center">
+        <div style="font-size:42px;font-weight:900;color:#ff3344;letter-spacing:-2px;line-height:1">100%</div>
+        <div style="font-size:12px;color:#7a9cc0;margin-top:6px;text-transform:uppercase;letter-spacing:1px">No seu navegador</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="recursos" style="background:var(--s1);border-top:1px solid var(--gb)">
+<div class="si"><div class="fl2">
+  <div><div class="eye">Mais liberdade</div><h2 class="sh">Você controla sua operação.<br><span class="grad">Não o contrário.</span></h2><p class="sp" style="margin-top:12px">Hoje muitas transmissões exigem acompanhamento constante e atenção a diversas tarefas. A WorkLive reúne recursos que ajudam você a manter sua operação organizada em um único painel.</p><a href="#planos" class="hbtn1" style="display:inline-flex;margin-top:28px;font-size:13px;padding:13px 24px">Saiba mais →</a></div>
+  <div class="fg">
+    <div class="fc"><div class="fi">🛡️</div><h3>Proteção Contra Violações</h3><p>Acompanhe avisos da plataforma e execute ações automáticas conforme sua configuração.</p></div>
+    <div class="fc"><div class="fi">⏱</div><h3>Timer Inteligente</h3><p>Defina o tempo da sua live e a ferramenta cuida do encerramento automaticamente.</p></div>
+    <div class="fc"><div class="fi">📌</div><h3>Fixação de Produtos</h3><p>Programe a fixação dos produtos no momento certo e aumente suas chances de conversão.</p></div>
+    <div class="fc"><div class="fi">📊</div><h3>Painel em Tempo Real</h3><p>Acompanhe tudo o que acontece na sua live em um dashboard moderno e completo.</p></div>
+    <div class="fc"><div class="fi">🔔</div><h3>Alertas Inteligentes</h3><p>Receba notificações importantes sobre eventos que acontecem durante a transmissão.</p></div>
+    <div class="fc"><div class="fi">✨</div><h3>Interface Simples</h3><p>Instalação rápida, configuração fácil e uma interface intuitiva para o seu dia a dia.</p></div>
+  </div>
+</div></div>
+</section>
+
+<!-- SEÇÃO COMPARATIVO: COM vs SEM -->
+<section style="padding:70px 6%;background:var(--s1);border-bottom:1px solid var(--gb)">
+  <div style="max-width:960px;margin:0 auto;text-align:center">
+    <div class="eye reveal">A diferença é real</div>
+    <h2 class="sh" style="margin-bottom:40px;font-size:clamp(28px,3vw,40px)">Sua live <span style="color:#ff3344">sem</span> a ferramenta vs <span class="grad">com</span> a WorkLive</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left">
+      <!-- SEM -->
+      <div style="background:rgba(255,51,68,.05);border:1px solid rgba(255,51,68,.2);border-radius:14px;padding:28px">
+        <div style="font-size:13px;font-weight:800;color:#ff6677;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;gap:8px"><span>❌</span> Sem a ferramenta</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>A live roda solta, sem ninguém monitorando o que acontece</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Tudo manual — você não consegue focar em vender e gerenciar ao mesmo tempo</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Sem alertas — você só percebe que a live esfriou quando já é tarde</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Sem automação — cada ação depende de você estar presente e atento</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Lives gravadas ficam sem gerenciamento — nada funciona sozinho</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Termina sem saber o que funcionou — sem dados, sem aprendizado</div>
+        </div>
+      </div>
+      <!-- COM -->
+      <div style="background:rgba(0,136,255,.06);border:1px solid rgba(0,136,255,.25);border-radius:14px;padding:28px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00d4ff,transparent)"></div>
+        <div style="font-size:13px;font-weight:800;color:#00d4ff;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;gap:8px"><span>✅</span> Com a WorkLive</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Monitora espectadores, vendas e GMV em tempo real — a cada 2 segundos</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Automatiza comentários, bloqueios e fixação de produto sem você tocar em nada</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Alerta quando a live esfria — você age antes de perder o ritmo de vendas</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Gerencia o chat ao vivo enquanto você se concentra 100% em vender</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Funciona com lives gravadas — a ferramenta gerencia tudo mesmo sem você ao vivo</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Você termina cada live sabendo exatamente o que aconteceu — com dados reais</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="sec" id="como-funciona">
+<div class="si" style="text-align:center">
+  <div class="eye reveal">Como funciona</div>
+  <h2 class="sh" style="margin-bottom:12px">Simples de usar.<br><span class="grad">Poderoso nos resultados.</span></h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:900px;margin:52px auto 0;position:relative">
+    <div style="position:absolute;top:32px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,rgba(0,136,255,.2),rgba(0,212,255,.5),rgba(0,136,255,.2))"></div>
+    <div class="step reveal d1"><div class="snum">1</div><h4>Instale</h4><p>Instale a extensao da WorkLive no Chrome em poucos segundos.</p></div>
+    <div class="step reveal d2"><div class="snum">2</div><h4>Configure</h4><p>Faca suas configuracoes de acordo com a sua estrategia de live.</p></div>
+    <div class="step reveal d3"><div class="snum">3</div><h4>Inicie sua Live</h4><p>Inicie sua transmissao normalmente no TikTok Live Studio.</p></div>
+    <div class="step reveal d4"><div class="snum">4</div><h4>Gerencie Tudo</h4><p>Acompanhe e gerencie todos os recursos pelo painel da WorkLive.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="planos" style="background:var(--s1);border-top:1px solid var(--gb);padding:80px 6%">
+<div style="max-width:1200px;margin:0 auto;width:100%"><div style="display:flex;flex-direction:column;gap:32px;width:100%">
+  <div style="text-align:center">
+    <div class="eye reveal">Escolha seu plano</div>
+    <h2 class="sh" style="margin-bottom:10px">Planos que cabem no seu momento.</h2>
+    <p class="sp" style="max-width:520px;margin:0 auto">Acesso completo com <strong style="color:#00d4ff">2 dispositivos inclusos</strong>. Cancele quando quiser.</p>
+  </div>
+
+  <!-- CARD URGÊNCIA -->
+  <div id="urgency-card" style="background:linear-gradient(135deg,rgba(140,0,0,.2),rgba(80,0,0,.15));border:1px solid rgba(255,51,68,.35);border-radius:14px;padding:20px 28px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div style="display:flex;align-items:center;gap:12px;flex:1">
+      <div style="width:10px;height:10px;border-radius:50%;background:#ff3344;box-shadow:0 0 12px #ff3344;flex-shrink:0;animation:pulse 1s infinite"></div>
+      <div>
+        <div style="font-size:14px;font-weight:800;color:#ff6677;margin-bottom:3px">🔥 Oferta de Lançamento — Preços podem subir a qualquer momento</div>
+        <div style="font-size:12px;color:#7a9cc0">Garante agora com 2 dispositivos inclusos e 7 dias de garantia</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:32px;flex-shrink:0">
+      <div style="text-align:center">
+        <div style="font-size:10px;font-weight:700;color:#ff3344;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px">Vagas restantes</div>
+        <div class="vagas-num" style="font-size:32px;font-weight:900;color:#ff3344;line-height:1">23</div>
+      </div>
+      <div style="width:1px;height:48px;background:rgba(255,51,68,.25)"></div>
+      <div style="text-align:center">
+        <div style="font-size:10px;font-weight:700;color:#7a9cc0;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px">Compraram hoje</div>
+        <div style="font-size:32px;font-weight:900;color:#fff;line-height:1">47</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;width:100%">
+    <div class="plan">
+      <div class="pname">Mensal</div><div class="pprice"><sup>R$</sup>147</div><div class="pper">/mês</div><div class="psave">&nbsp;</div>
+      <div class="psep"></div><div class="pkeys">🔑 2 chaves de acesso</div>
+      <ul class="pfeat"><li>Todos os recursos</li><li>Suporte via WhatsApp</li><li>Cancelamento fácil</li></ul>
+      <div style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff6677;font-weight:700">31 restantes</span></div>
+      <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:38%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
+    </div>
+    <a href="https://pay.cakto.com.br/ytmzh93" class="btn bo">Assinar Plano Mensal</a><div class="pnote">Ideal para começar</div>
+    </div>
+    <div class="plan hot reveal d2">
+      <div class="pbadge">✦ Mais escolhido</div>
+      <div class="pname">Trimestral</div><div class="pprice"><sup>R$</sup>247</div><div class="pper">/3 meses · R$ 82/mês</div><div class="psave">Economize 44%</div>
+      <div class="psep"></div><div class="pkeys">🔑 2 chaves de acesso</div>
+      <ul class="pfeat"><li>Todos os recursos</li><li>Suporte via WhatsApp</li><li>Cancelamento fácil</li><li>Atualizações automáticas</li></ul>
+      <div style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff3344;font-weight:800">⚡ Apenas 8 restantes!</span></div>
+      <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:84%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
+    </div>
+    <a href="https://pay.cakto.com.br/n7xhgh3" class="btn bb" style="background:linear-gradient(135deg,#cc0022,#ff3344);box-shadow:0 4px 20px rgba(255,51,68,.4)">🔥 Garantir Plano Trimestral</a><div class="pnote" style="color:#ff6677">⚡ Últimas vagas neste preço!</div>
+    </div>
+    <div class="plan">
+      <div class="pname">Semestral</div><div class="pprice"><sup>R$</sup>397</div><div class="pper">/6 meses · R$ 66/mês</div><div class="psave">Economize 55%</div>
+      <div class="psep"></div><div class="pkeys">🔑 2 chaves de acesso</div>
+      <ul class="pfeat"><li>Todos os recursos</li><li>Suporte via WhatsApp</li><li>Cancelamento fácil</li><li>Atualizações automáticas</li><li>Onboarding 1:1</li></ul>
+      <div style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff6677;font-weight:700">19 restantes</span></div>
+      <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:62%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
+    </div>
+    <a href="https://pay.cakto.com.br/m75f5ho" class="btn bo">Assinar Plano Semestral</a><div class="pnote">Melhor custo-benefício</div>
+    </div>
+  </div>
+
+  <!-- SELOS DE SEGURANÇA -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin-top:24px;background:rgba(0,0,0,.25);border:1px solid rgba(0,136,255,.1);border-radius:12px;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:12px;padding:18px 28px;flex:1;min-width:200px;border-right:1px solid rgba(0,136,255,.1)">
+      <span style="font-size:26px">🔒</span>
+      <div><div style="font-size:13px;font-weight:700;color:#fff">Pagamento Seguro</div><div style="font-size:11px;color:#7a9cc0">Criptografia SSL 256-bit</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:18px 28px;flex:1;min-width:200px;border-right:1px solid rgba(0,136,255,.1)">
+      <span style="font-size:26px">⚡</span>
+      <div><div style="font-size:13px;font-weight:700;color:#fff">Acesso Imediato</div><div style="font-size:11px;color:#7a9cc0">Chaves enviadas por e-mail</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:18px 28px;flex:1;min-width:200px;border-right:1px solid rgba(0,136,255,.1)">
+      <span style="font-size:26px">💬</span>
+      <div><div style="font-size:13px;font-weight:700;color:#fff">Suporte WhatsApp</div><div style="font-size:11px;color:#7a9cc0">Respondemos em até 24h</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:18px 28px;flex:1;min-width:200px">
+      <span style="font-size:26px">🔄</span>
+      <div><div style="font-size:13px;font-weight:700;color:#fff">Cancele Quando Quiser</div><div style="font-size:11px;color:#7a9cc0">Sem fidelidade ou multa</div></div>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<section class="sec gar">
+<div class="gi">
+  <div class="gsh">🛡️</div>
+  <div class="gt"><h2>7 dias de garantia incondicional</h2><p>Teste a WorkLive por 7 dias. Se dentro desse período você perceber que a ferramenta não atende às suas necessidades, basta solicitar o cancelamento e devolvemos seu pagamento. Sem perguntas.</p></div>
+  <div class="gn"><div class="gnn">7</div><div class="gnl">dias</div></div>
+</div>
+</section>
+
+<section class="sec" id="depoimentos" style="background:var(--s1);border-top:1px solid var(--gb)">
+<div class="si">
+  <div class="eye reveal">Depoimentos</div><h2 class="sh">Quem usa, recomenda.</h2>
+  <div class="tg">
+    <div class="tc reveal d1">
+      <div style="font-size:32px;color:rgba(0,212,255,.3);line-height:1;margin-bottom:10px">"</div>
+      <p class="tct">Eu rodo live gravada em 2 contas ao mesmo tempo e a WorkLive monitora as duas pra mim. Quando bate no limite de tempo que configurei, ela encerra sozinha antes de tomar violação. Já salvou minha conta várias vezes! Não fico mais na frente da tela esperando. 🔥</p>
+      <div class="tca">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e91e8c,#ff6b35);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(233,30,140,.3)">JN</div>
+        <div><div class="tcn">Jéssica N.</div><div class="tcr">Live Commerce · 2 contas simultâneas</div><div class="stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="tc reveal d2">
+      <div style="font-size:32px;color:rgba(0,212,255,.3);line-height:1;margin-bottom:10px">"</div>
+      <p class="tct">O timer inteligente é o que mais uso. Coloco pra encerrar automaticamente antes de dar o horário crítico e nunca mais tomei advertência por tempo. Escalo tranquilo rodando live gravada 24h por dia — literalmente no automático enquanto durmo rsrs 🚀</p>
+      <div class="tca">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#0066ff,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,102,255,.3)">LM</div>
+        <div><div class="tcn">Lucas M.</div><div class="tcr">Live Commerce · Lives 24h no automático</div><div class="stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="tc reveal d3">
+      <div style="font-size:32px;color:rgba(0,212,255,.3);line-height:1;margin-bottom:10px">"</div>
+      <p class="tct">A proteção contra violações me salvou demais. A ferramenta detecta o aviso e já derruba a live antes de virar punição. Hoje escalo com 3 contas rodando live gravada e consigo gerenciar tudo de um painel só. Isso aqui é nível outro. 💯</p>
+      <div class="tca">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(124,58,237,.3)">AR</div>
+        <div><div class="tcn">Amanda R.</div><div class="tcr">Live Commerce · 3 contas em escala</div><div class="stars">★★★★★</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="sec" id="faq">
+<div class="si"><div class="fql">
+  <div>
+    <div class="eye reveal">FAQ</div><h2 class="sh" style="margin-bottom:32px">Perguntas frequentes</h2>
+    <div>
+      <div class="fqi"><div class="fqq">A WorkLive funciona em qualquer computador? <span class="fqicon">+</span></div><div class="fqa">Sim. É uma extensão do Google Chrome e funciona em Windows, Mac ou Linux com o Chrome instalado.</div></div>
+      <div class="fqi"><div class="fqq">Preciso ter conhecimento técnico para usar? <span class="fqicon">+</span></div><div class="fqa">Não. A interface foi desenvolvida para ser simples e intuitiva. Qualquer pessoa consegue configurar em minutos.</div></div>
+      <div class="fqi"><div class="fqq">Como recebo o acesso após a compra? <span class="fqicon">+</span></div><div class="fqa">Assim que o pagamento é confirmado você recebe um e-mail com 2 chaves de ativação e o link da extensão. Menos de 5 minutos.</div></div>
+      <div class="fqi"><div class="fqq">Recebo atualizações futuras? <span class="fqicon">+</span></div><div class="fqa">Sim. Todos os planos recebem as atualizações automáticas da extensão enquanto a assinatura estiver ativa.</div></div>
+      <div class="fqi"><div class="fqq">Existe suporte caso eu precise de ajuda? <span class="fqicon">+</span></div><div class="fqa">Sim. Suporte via WhatsApp para todos os planos, respondemos em até 24 horas úteis.</div></div>
+      <div class="fqi"><div class="fqq">Posso cancelar quando quiser? <span class="fqicon">+</span></div><div class="fqa">Sim. Você pode cancelar a qualquer momento. Dentro dos 7 primeiros dias, garantimos reembolso total.</div></div>
+    </div>
+  </div>
+  <div class="fqcard">
+    <img src="data:image/jpeg;base64,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" style="width:72px;height:72px;border-radius:16px;object-fit:cover">
+    <h3>Pronto para levar sua Live para o próximo nível?</h3>
+    <p>Automatize, organize e tenha mais controle sobre suas transmissões. Comece agora!</p>
+    <a href="#planos" class="fqbtn">Quero começar agora →</a>
+    <div class="fqnote">✓ 7 dias de garantia incondicional</div>
+  </div>
+</div></div>
+</section>
+<section class="ctaend reveal">
+  <h2>Pronto para levar sua Live<br>para o <span class="grad">próximo nível?</span></h2>
+  <p>Automatize, organize e tenha mais controle sobre suas transmissões. Comece agora e veja a diferença na sua operação.</p>
+  <a href="#planos" class="ctabtn">Quero começar agora →</a>
+  <div class="ctabs"><div class="ctab"><span>🔒</span>Pagamento seguro</div><div class="ctab"><span>✓</span>2 dispositivos inclusos</div><div class="ctab"><span>🛡️</span>7 dias de garantia</div></div>
+</section>
+
+<footer>
+  <div class="flogo"><img src="data:image/jpeg;base64,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" alt=""><div class="flogot">Work<span>Live</span></div></div>
+  <div class="flinks"><a href="https://marianacastrops-debug.github.io/infinity-live-privacy/politica-privacidade.html">Política de Privacidade</a><a href="#">Termos de Uso</a><a href="#">Suporte</a></div>
+  <div class="fcopy">© 2026 WorkLive · Todos os direitos reservados</div>
+</footer>
+</div>
+<script>
+const c=document.getElementById("bg"),x=c.getContext("2d");let W,H,pts=[];
+function rsz(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+rsz();window.addEventListener("resize",rsz);
+class P{constructor(){this.reset()}reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.5;this.a=Math.random()*.4+.1;this.col=Math.random()>.5?"0,136,255":"0,212,255"}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}draw(){x.beginPath();x.arc(this.x,this.y,this.r,0,Math.PI*2);x.fillStyle="rgba("+this.col+","+this.a+")";x.fill()}}
+for(let i=0;i<100;i++)pts.push(new P());
+function lines(){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.strokeStyle="rgba(0,136,255,"+(0.06*(1-d/130))+")";x.lineWidth=.5;x.stroke()}}}
+function loop(){x.clearRect(0,0,W,H);pts.forEach(p=>{p.update();p.draw()});lines();requestAnimationFrame(loop)}
+loop();
+setTimeout(()=>{const b=document.getElementById("bar"),p=document.getElementById("pct");if(b)b.style.width="68%";let n=0;const iv=setInterval(()=>{n=Math.min(n+2,68);if(p)p.textContent=n+"%";if(n>=68)clearInterval(iv)},40)},800);
+document.querySelectorAll(".fqi").forEach(i=>i.addEventListener("click",()=>i.classList.toggle("open")));
+</script>
+
+<!-- STICKY CTA -->
+<div id="sticky-bar" style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(3,6,15,.97);border-top:1px solid rgba(255,51,68,.3);padding:12px 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;backdrop-filter:blur(20px);transform:translateY(100%);transition:transform .4s ease;box-shadow:0 -8px 30px rgba(0,0,0,.5)">
+  <div style="display:flex;align-items:center;gap:14px">
+    <div style="width:8px;height:8px;border-radius:50%;background:#ff3344;box-shadow:0 0 10px #ff3344;animation:pulse 1.2s infinite;flex-shrink:0"></div>
+    <div>
+      <div style="font-size:13px;font-weight:800;color:#fff">WorkLive — Oferta Especial</div>
+      <div style="font-size:11px;color:#7a9cc0">2 dispositivos inclusos · Garantia de 7 dias</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+    <div style="font-size:12px;color:#ff6677;font-weight:700">A partir de R$ 147/mês</div>
+    <a href="#planos" style="background:linear-gradient(135deg,#cc0022,#ff3344);color:#fff;font-size:12px;font-weight:800;padding:10px 22px;border-radius:7px;text-decoration:none;box-shadow:0 4px 20px rgba(255,51,68,.4);transition:.15s;white-space:nowrap">Garantir Acesso →</a>
+  </div>
+</div>
+<!-- POPUP COMPRA RECENTE -->
+<div id="buy-popup" style="position:fixed;bottom:80px;left:24px;z-index:998;background:rgba(8,15,32,.97);backdrop-filter:blur(16px);border:1px solid rgba(0,136,255,.25);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.5);transform:translateX(-120%);transition:transform .5s cubic-bezier(.34,1.56,.64,1);max-width:280px">
+  <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0066dd,#004499);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0" id="popup-av">JN</div>
+  <div>
+    <div style="font-size:12px;font-weight:700;color:#fff" id="popup-name">Jéssica N. de SP</div>
+    <div style="font-size:11px;color:#7a9cc0" id="popup-plan">assinou o plano Trimestral</div>
+    <div style="font-size:10px;color:#3a5878;margin-top:2px" id="popup-time">há 3 minutos</div>
+  </div>
+  <div style="width:6px;height:6px;border-radius:50%;background:#00e676;flex-shrink:0;box-shadow:0 0 8px #00e676"></div>
+</div>
+<script>
+// STICKY BAR
+const sbar = document.getElementById("sticky-bar");
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 500) sbar.style.transform = "translateY(0)";
+  else sbar.style.transform = "translateY(100%)";
+});
+
+// POPUP de compra recente
+const purchases = [
+  {av:"JN", name:"Jéssica N. de SP", plan:"assinou o plano Trimestral", time:"há 2 minutos"},
+  {av:"LM", name:"Lucas M. de RJ", plan:"assinou o plano Semestral", time:"há 5 minutos"},
+  {av:"AR", name:"Amanda R. de MG", plan:"assinou o plano Trimestral", time:"há 8 minutos"},
+  {av:"PS", name:"Paulo S. de SC", plan:"assinou o plano Mensal", time:"há 12 minutos"},
+  {av:"CT", name:"Carla T. de BA", plan:"assinou o plano Semestral", time:"há 15 minutos"},
+  {av:"MF", name:"Marcos F. de PR", plan:"assinou o plano Trimestral", time:"há 18 minutos"},
+];
+let pi = 0;
+const popup = document.getElementById("buy-popup");
+function showPopup() {
+  const p = purchases[pi % purchases.length]; pi++;
+  document.getElementById("popup-av").textContent = p.av;
+  document.getElementById("popup-name").textContent = p.name;
+  document.getElementById("popup-plan").textContent = p.plan;
+  document.getElementById("popup-time").textContent = p.time;
+  popup.style.transform = "translateX(0)";
+  setTimeout(() => { popup.style.transform = "translateX(-120%)"; }, 4000);
+}
+setTimeout(() => { showPopup(); setInterval(showPopup, 12000); }, 5000);
+
+// VIEWERS counter oscilando
+let vc = 134;
+setInterval(() => {
+  vc += Math.floor(Math.random() * 5) - 2;
+  vc = Math.max(100, Math.min(180, vc));
+  const el = document.getElementById("viewers-count");
+  if(el) el.textContent = vc;
+}, 4000);
+</script>
+
+<script>
+// ── SCROLL REVEAL ──────────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
+
+// Mobile-friendly: threshold 0 e rootMargin generoso
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0, rootMargin:'0px 0px 0px 0px'});
+
+revealEls.forEach(el => revealObs.observe(el));
+
+// Fallback robusto: força todos visíveis após 2.5s
+// (garante que nenhum elemento fique invisível no mobile)
+setTimeout(() => {
+  revealEls.forEach(el => el.classList.add('visible'));
+}, 2500);
+
+// Fallback imediato para elementos já na viewport ao carregar
+window.addEventListener('load', () => {
+  revealEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight){
+      el.classList.add('visible');
+    }
+  });
+});
+
+// ── COMP ITEMS ─────────────────────────────────────────
+const compObs = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if(e.isIntersecting){
+      const items = e.target.querySelectorAll('.comp-item');
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.add('visible'), i * 80);
+      });
+      compObs.unobserve(e.target);
+    }
+  });
+}, {threshold:.1});
+document.querySelectorAll('.comp-grid').forEach(el => compObs.observe(el));
+
+// ── STAT COUNTER ANIMATION ─────────────────────────────
+function animateCounter(el, target, suffix='', duration=1500){
+  let start = 0;
+  const step = target / (duration / 16);
+  const iv = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = Math.floor(start) + suffix;
+    if(start >= target) clearInterval(iv);
+  }, 16);
+}
+const statObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const val = el.dataset.val;
+      const suffix = el.dataset.suffix || '';
+      animateCounter(el, parseFloat(val), suffix);
+      statObs.unobserve(el);
+    }
+  });
+}, {threshold:.5});
+document.querySelectorAll('[data-val]').forEach(el => statObs.observe(el));
+</script>
+
+
+<script>
+// ── SISTEMA DE NOTIFICAÇÕES ANIMADAS ──────────────────
+const NOTIFS = [
+  {
+    icon:'💰', type:'green', dot:'green',
+    title:'Nova venda detectada!',
+    sub:'R$ 89,90 · Produto fixado automaticamente',
+    time:'agora mesmo'
+  },
+  {
+    icon:'🛡️', type:'red', dot:'red',
+    title:'Proteção ativada!',
+    sub:'Aviso de violação detectado → Live encerrada antes da punição',
+    time:'há 1 minuto'
+  },
+  {
+    icon:'⏱', type:'yellow', dot:'yellow',
+    title:'Timer inteligente',
+    sub:'Live encerrando em 5 minutos automaticamente',
+    time:'há 2 minutos'
+  },
+  {
+    icon:'🚀', type:'blue', dot:'blue',
+    title:'Live gravada rodando',
+    sub:'Conta 2 · 3h47min no ar · 0 intervenções necessárias',
+    time:'em andamento'
+  },
+  {
+    icon:'⚡', type:'green', dot:'green',
+    title:'Automação disparada',
+    sub:'Comentário automático enviado no chat',
+    time:'agora mesmo'
+  },
+  {
+    icon:'🔔', type:'yellow', dot:'yellow',
+    title:'Alerta: sem venda há 8 min',
+    sub:'Live conta 1 · Recomendado: trocar produto fixado',
+    time:'há 30 segundos'
+  },
+  {
+    icon:'✅', type:'green', dot:'green',
+    title:'Live encerrada com sucesso',
+    sub:'Timer atingido · Nenhuma violação · GMV: R$ 1.284,50',
+    time:'há 1 minuto'
+  },
+  {
+    icon:'🎬', type:'blue', dot:'blue',
+    title:'Live gravada iniciada',
+    sub:'Conta 3 · Modo automático ativado · Sem intervenção',
+    time:'agora mesmo'
+  },
+];
+
+const stack = document.getElementById('notif-stack');
+let ni = 0;
+let activeNotifs = [];
+
+function createNotif(data){
+  const el = document.createElement('div');
+  el.className = 'notif';
+  el.innerHTML = \`
+    <div class="notif-icon \${data.type}">\${data.icon}</div>
+    <div style="flex:1;min-width:0">
+      <div class="notif-title">\${data.title}</div>
+      <div class="notif-sub">\${data.sub}</div>
+      <div class="notif-time">\${data.time}</div>
+    </div>
+    <div class="notif-dot \${data.dot}"></div>
+  \`;
+  return el;
+}
+
+function showNotif(){
+  const data = NOTIFS[ni % NOTIFS.length];
+  ni++;
+
+  const el = createNotif(data);
+  stack.appendChild(el);
+  activeNotifs.push(el);
+
+  // Máximo 3 notificações visíveis ao mesmo tempo
+  if(activeNotifs.length > 3){
+    const old = activeNotifs.shift();
+    old.classList.add('hide');
+    setTimeout(() => old.remove(), 400);
+  }
+
+  // Anima entrada
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => el.classList.add('show'));
+  });
+
+  // Remove após 5 segundos
+  setTimeout(() => {
+    el.classList.add('hide');
+    setTimeout(() => {
+      el.remove();
+      activeNotifs = activeNotifs.filter(n => n !== el);
+    }, 400);
+  }, 5000);
+}
+
+// Só mostra notificações se não for mobile muito pequeno
+const isMobile = window.innerWidth < 480;
+const startDelay = isMobile ? 99999 : 6000; // não mostra em mobile pequeno
+const interval = 7000;
+
+// Inicia após alguns segundos para não atrapalhar o carregamento
+setTimeout(() => {
+  showNotif();
+  setInterval(showNotif, interval);
+}, startDelay);
+</script>
+
+
+<script>
+// Anima as notificações do celular ao entrar na viewport
+const phoneNotifs = document.querySelectorAll('.phone-notif');
+const phoneObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      phoneNotifs.forEach((n, i) => {
+        setTimeout(() => {
+          n.style.opacity = '1';
+          n.style.transform = 'translateY(0)';
+        }, i * 200);
+      });
+      phoneObs.disconnect();
+    }
+  });
+}, {threshold: 0.2});
+
+const phoneEl = document.getElementById('phone-notifs');
+if(phoneEl) phoneObs.observe(phoneEl);
+</script>
+
+</body>
+</html>
