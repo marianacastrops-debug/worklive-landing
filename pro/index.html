@@ -248,6 +248,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
 
   /* Sticky bar */
   #sticky-bar{padding:10px 4%}
+  #buy-popup{display:none !important}
 }
 
 /* MOBILE */
@@ -258,12 +259,16 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
   .nlogo-t{font-size:16px}
   .np{padding:8px 14px;font-size:12px}
 
+  /* Texto curto (mobile) vs completo (desktop) */
+  .txt-full{display:none}
+  .txt-short{display:inline}
+
   /* Ticker */
   .ticker{font-size:10px;padding:8px 3%}
   .tbadge{display:none}
 
   /* Viewers bar */
-  #viewers-bar{font-size:11px;flex-wrap:wrap;gap:4px;padding:8px 4%}
+  #viewers-bar{display:none !important}
 
   /* Hero */
   .hero{padding:36px 5% 30px;gap:28px}
@@ -341,7 +346,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
   #sticky-bar > div:first-child{display:none}
 
   /* Popup */
-  #buy-popup{max-width:240px;bottom:70px;left:12px}
+  #buy-popup{display:none !important}
 
   /* Footer */
   footer{flex-direction:column;align-items:center;gap:10px;padding:20px 4%;text-align:center}
@@ -425,6 +430,8 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
 
 /* NÚMEROS DE STAT — counter animation via JS */
 .stat-counter{display:inline-block}
+.txt-short{display:none}
+.txt-full{display:inline}
 
 /* LIVE DOT — já tem pulse, adicionar glow extra */
 .ldot,.hldot{
@@ -691,27 +698,27 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left">
       <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
         <span style="font-size:24px;flex-shrink:0">🎬</span>
-        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você roda lives gravadas</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Transmite conteúdo pré-gravado e quer que tudo funcione no automático — sem precisar estar presente na frente da câmera.</div></div>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você roda lives gravadas</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Roda no automático, sem precisar aparecer.</span><span class="txt-full">Transmite conteúdo pré-gravado e quer que tudo funcione no automático — sem precisar estar presente na frente da câmera.</span></div></div>
       </div>
       <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
         <span style="font-size:24px;flex-shrink:0">🚀</span>
-        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você quer escalar e rodar múltiplas lives</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Quer operar mais de uma transmissão ao mesmo tempo e precisar de um painel que monitore tudo em paralelo.</div></div>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você quer escalar e rodar múltiplas lives</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Monitore várias transmissões em paralelo.</span><span class="txt-full">Quer operar mais de uma transmissão ao mesmo tempo e precisar de um painel que monitore tudo em paralelo.</span></div></div>
       </div>
       <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
         <span style="font-size:24px;flex-shrink:0">😤</span>
-        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você está cansado de fazer tudo na mão</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Gerenciar chat, fixar produto, bloquear usuário e ainda vender ao mesmo tempo — é impossível sem automação.</div></div>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você está cansado de fazer tudo na mão</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Automatize chat, produtos e bloqueios.</span><span class="txt-full">Gerenciar chat, fixar produto, bloquear usuário e ainda vender ao mesmo tempo — é impossível sem automação.</span></div></div>
       </div>
       <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
         <span style="font-size:24px;flex-shrink:0">📱</span>
-        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você faz lives ao vivo no TikTok Shop</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Quer controle total do que está acontecendo — métricas, vendas, chat e alertas — sem tirar o olho da câmera.</div></div>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você faz lives ao vivo no TikTok Shop</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Controle total sem tirar o olho da câmera.</span><span class="txt-full">Quer controle total do que está acontecendo — métricas, vendas, chat e alertas — sem tirar o olho da câmera.</span></div></div>
       </div>
       <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
         <span style="font-size:24px;flex-shrink:0">📲</span>
-        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você opera em múltiplos dispositivos</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Cada plano vem com 2 chaves de acesso. Rode e monitore lives em dois computadores ao mesmo tempo — escale sem limite.</div></div>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você opera em múltiplos dispositivos</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">2 chaves por plano — escale sem limite.</span><span class="txt-full">Cada plano vem com 2 chaves de acesso. Rode e monitore lives em dois computadores ao mesmo tempo — escale sem limite.</span></div></div>
       </div>
       <div style="background:rgba(8,15,32,.9);border:1px solid rgba(0,136,255,.15);border-radius:12px;padding:22px;display:flex;align-items:flex-start;gap:12px">
         <span style="font-size:24px;flex-shrink:0">💰</span>
-        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você quer profissionalizar a operação</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Sair do amador e ter uma operação de live commerce automatizada, monitorada e lucrativa — mesmo dormindo.</div></div>
+        <div><div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px">Você quer profissionalizar a operação</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Operação automatizada e lucrativa 24/7.</span><span class="txt-full">Sair do amador e ter uma operação de live commerce automatizada, monitorada e lucrativa — mesmo dormindo.</span></div></div>
       </div>
     </div>
     <a href="#planos" class="hbtn1" style="display:inline-flex;margin-top:40px;font-size:14px;padding:16px 40px">Quero automatizar minhas lives agora →</a>
@@ -737,19 +744,19 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
     <div class="reveal-right">
       <div class="eye">Fique por dentro de tudo</div>
       <h2 class="sh" style="margin-bottom:16px">A ferramenta avisa voce.<br><span class="grad">Onde quer que esteja.</span></h2>
-      <p class="sp" style="margin-bottom:28px">A WorkLive dispara notificacoes em tempo real no seu Telegram — cada venda, alerta de violacao e encerramento automatico. Acompanhe tudo pelo celular sem precisar estar na frente do computador.</p>
+      <p class="sp" style="margin-bottom:28px"><span class="txt-short">Notificações em tempo real no seu Telegram — vendas, alertas e encerramento automático.</span><span class="txt-full">A WorkLive dispara notificacoes em tempo real no seu Telegram — cada venda, alerta de violacao e encerramento automatico. Acompanhe tudo pelo celular sem precisar estar na frente do computador.</span></p>
       <div style="display:flex;flex-direction:column;gap:12px">
         <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,51,68,.06);border:1px solid rgba(255,51,68,.2);border-radius:12px">
           <div style="width:38px;height:38px;border-radius:9px;background:rgba(255,51,68,.12);border:1px solid rgba(255,51,68,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🛡️</div>
-          <div><div style="font-size:14px;font-weight:800;color:#ff6677;margin-bottom:4px">Protecao contra violacoes</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Detecta avisos da plataforma e encerra a live automaticamente antes de virar punicao. Sua conta protegida mesmo sem voce olhando.</div></div>
+          <div><div style="font-size:14px;font-weight:800;color:#ff6677;margin-bottom:4px">Protecao contra violacoes</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Encerra a live antes de virar punição.</span><span class="txt-full">Detecta avisos da plataforma e encerra a live automaticamente antes de virar punicao. Sua conta protegida mesmo sem voce olhando.</span></div></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,200,0,.06);border:1px solid rgba(255,200,0,.2);border-radius:12px">
           <div style="width:38px;height:38px;border-radius:9px;background:rgba(255,200,0,.12);border:1px solid rgba(255,200,0,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">⏱</div>
-          <div><div style="font-size:14px;font-weight:800;color:#ffc800;margin-bottom:4px">Timer inteligente</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Define o tempo maximo da live e ela encerra sozinha no horario certo. Notificacao de encerramento direto no celular.</div></div>
+          <div><div style="font-size:14px;font-weight:800;color:#ffc800;margin-bottom:4px">Timer inteligente</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Encerra sozinha no horário certo.</span><span class="txt-full">Define o tempo maximo da live e ela encerra sozinha no horario certo. Notificacao de encerramento direto no celular.</span></div></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.06);border:1px solid rgba(0,136,255,.2);border-radius:12px">
           <div style="width:38px;height:38px;border-radius:9px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.25);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🔔</div>
-          <div><div style="font-size:14px;font-weight:800;color:#00d4ff;margin-bottom:4px">Alerta de nova venda</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Cada venda gera notificacao instantanea com valor, total de itens e GMV acumulado. Acompanhe em tempo real pelo celular.</div></div>
+          <div><div style="font-size:14px;font-weight:800;color:#00d4ff;margin-bottom:4px">Alerta de nova venda</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Valor, itens e GMV em tempo real.</span><span class="txt-full">Cada venda gera notificacao instantanea com valor, total de itens e GMV acumulado. Acompanhe em tempo real pelo celular.</span></div></div>
         </div>
       </div>
     </div>
@@ -763,19 +770,19 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
     <div>
       <div class="eye reveal">Pioneira no mercado</div>
       <h2 class="sh">A ferramenta mais <span class="grad">completa e prática</span> para quem faz live no TikTok Shop.</h2>
-      <p class="sp" style="margin-top:14px;margin-bottom:28px">Configure uma vez e deixe rodar. Com lives gravadas ou ao vivo, a WorkLive automatiza, monitora e gerencia tudo — enquanto você descansa, vende ou cuida de outro negócio.</p>
+      <p class="sp" style="margin-top:14px;margin-bottom:28px"><span class="txt-short">Configure uma vez e deixe rodar — a WorkLive automatiza tudo pra você.</span><span class="txt-full">Configure uma vez e deixe rodar. Com lives gravadas ou ao vivo, a WorkLive automatiza, monitora e gerencia tudo — enquanto você descansa, vende ou cuida de outro negócio.</span></p>
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.05);border:1px solid rgba(0,136,255,.12);border-radius:10px">
           <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏆</div>
-          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Pioneira no Live Commerce brasileiro</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Uma das primeiras ferramentas de automação 100% focada em TikTok Shop Live Commerce no Brasil.</div></div>
+          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Pioneira no Live Commerce brasileiro</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Foco 100% em TikTok Shop no Brasil.</span><span class="txt-full">Uma das primeiras ferramentas de automação 100% focada em TikTok Shop Live Commerce no Brasil.</span></div></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.05);border:1px solid rgba(0,136,255,.12);border-radius:10px">
           <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🤖</div>
-          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Trabalha enquanto você descansa</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">As automações rodam sozinhas durante toda a live. Você foca em vender, a ferramenta cuida do resto.</div></div>
+          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Trabalha enquanto você descansa</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Automações rodam sozinhas na live.</span><span class="txt-full">As automações rodam sozinhas durante toda a live. Você foca em vender, a ferramenta cuida do resto.</span></div></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(0,136,255,.05);border:1px solid rgba(0,136,255,.12);border-radius:10px">
           <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,136,255,.12);border:1px solid rgba(0,136,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">⚡</div>
-          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">A mais prática do mercado</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6">Instala em 5 minutos, zero configuração técnica. Se você sabe usar o Chrome, já sabe usar a WorkLive.</div></div>
+          <div><div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">A mais prática do mercado</div><div style="font-size:12px;color:#7a9cc0;line-height:1.6"><span class="txt-short">Instala em 5 min, zero configuração.</span><span class="txt-full">Instala em 5 minutos, zero configuração técnica. Se você sabe usar o Chrome, já sabe usar a WorkLive.</span></div></div>
         </div>
       </div>
     </div>
@@ -805,12 +812,12 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
 <div class="si"><div class="fl2">
   <div><div class="eye">Mais liberdade</div><h2 class="sh">Você controla sua operação.<br><span class="grad">Não o contrário.</span></h2><p class="sp" style="margin-top:12px">Hoje muitas transmissões exigem acompanhamento constante e atenção a diversas tarefas. A WorkLive reúne recursos que ajudam você a manter sua operação organizada em um único painel.</p><a href="#planos" class="hbtn1" style="display:inline-flex;margin-top:28px;font-size:13px;padding:13px 24px">Saiba mais →</a></div>
   <div class="fg">
-    <div class="fc"><div class="fi">🛡️</div><h3>Proteção Contra Violações</h3><p>Acompanhe avisos da plataforma e execute ações automáticas conforme sua configuração.</p></div>
-    <div class="fc"><div class="fi">⏱</div><h3>Timer Inteligente</h3><p>Defina o tempo da sua live e a ferramenta cuida do encerramento automaticamente.</p></div>
-    <div class="fc"><div class="fi">📌</div><h3>Fixação de Produtos</h3><p>Programe a fixação dos produtos no momento certo e aumente suas chances de conversão.</p></div>
-    <div class="fc"><div class="fi">📊</div><h3>Painel em Tempo Real</h3><p>Acompanhe tudo o que acontece na sua live em um dashboard moderno e completo.</p></div>
-    <div class="fc"><div class="fi">🔔</div><h3>Alertas Inteligentes</h3><p>Receba notificações importantes sobre eventos que acontecem durante a transmissão.</p></div>
-    <div class="fc"><div class="fi">✨</div><h3>Interface Simples</h3><p>Instalação rápida, configuração fácil e uma interface intuitiva para o seu dia a dia.</p></div>
+    <div class="fc"><div class="fi">🛡️</div><h3>Proteção Contra Violações</h3><p><span class="txt-short">Ações automáticas contra avisos da plataforma.</span><span class="txt-full">Acompanhe avisos da plataforma e execute ações automáticas conforme sua configuração.</span></p></div>
+    <div class="fc"><div class="fi">⏱</div><h3>Timer Inteligente</h3><p><span class="txt-short">Encerramento automático no horário certo.</span><span class="txt-full">Defina o tempo da sua live e a ferramenta cuida do encerramento automaticamente.</span></p></div>
+    <div class="fc"><div class="fi">📌</div><h3>Fixação de Produtos</h3><p><span class="txt-short">Fixa o produto certo, na hora certa.</span><span class="txt-full">Programe a fixação dos produtos no momento certo e aumente suas chances de conversão.</span></p></div>
+    <div class="fc"><div class="fi">📊</div><h3>Painel em Tempo Real</h3><p><span class="txt-short">Tudo da sua live, num dashboard só.</span><span class="txt-full">Acompanhe tudo o que acontece na sua live em um dashboard moderno e completo.</span></p></div>
+    <div class="fc"><div class="fi">🔔</div><h3>Alertas Inteligentes</h3><p><span class="txt-short">Avisos dos eventos mais importantes.</span><span class="txt-full">Receba notificações importantes sobre eventos que acontecem durante a transmissão.</span></p></div>
+    <div class="fc"><div class="fi">✨</div><h3>Interface Simples</h3><p><span class="txt-short">Fácil de instalar e usar no dia a dia.</span><span class="txt-full">Instalação rápida, configuração fácil e uma interface intuitiva para o seu dia a dia.</span></p></div>
   </div>
 </div></div>
 </section>
@@ -825,12 +832,12 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
       <div style="background:rgba(255,51,68,.05);border:1px solid rgba(255,51,68,.2);border-radius:14px;padding:28px">
         <div style="font-size:13px;font-weight:800;color:#ff6677;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;gap:8px"><span>❌</span> Sem a ferramenta</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>A live roda solta, sem ninguém monitorando o que acontece</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Tudo manual — você não consegue focar em vender e gerenciar ao mesmo tempo</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Sem alertas — você só percebe que a live esfriou quando já é tarde</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Sem automação — cada ação depende de você estar presente e atento</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Lives gravadas ficam sem gerenciamento — nada funciona sozinho</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span>Termina sem saber o que funcionou — sem dados, sem aprendizado</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span><span class="txt-short">Ninguém monitora o que acontece</span><span class="txt-full">A live roda solta, sem ninguém monitorando o que acontece</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span><span class="txt-short">Tudo manual, sem foco em vender</span><span class="txt-full">Tudo manual — você não consegue focar em vender e gerenciar ao mesmo tempo</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span><span class="txt-short">Só percebe quando já é tarde</span><span class="txt-full">Sem alertas — você só percebe que a live esfriou quando já é tarde</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span><span class="txt-short">Depende de você o tempo todo</span><span class="txt-full">Sem automação — cada ação depende de você estar presente e atento</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span><span class="txt-short">Live gravada sem gerenciamento</span><span class="txt-full">Lives gravadas ficam sem gerenciamento — nada funciona sozinho</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#6a6a7a;padding:8px 10px;background:rgba(255,51,68,.04);border-radius:6px"><span style="color:#ff3344;flex-shrink:0;font-size:15px">✗</span><span class="txt-short">Termina sem saber o que funcionou</span><span class="txt-full">Termina sem saber o que funcionou — sem dados, sem aprendizado</span></div>
         </div>
       </div>
       <!-- COM -->
@@ -838,12 +845,12 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
         <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00d4ff,transparent)"></div>
         <div style="font-size:13px;font-weight:800;color:#00d4ff;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;gap:8px"><span>✅</span> Com a WorkLive</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Monitora espectadores, vendas e GMV em tempo real — a cada 2 segundos</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Automatiza comentários, bloqueios e fixação de produto sem você tocar em nada</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Alerta quando a live esfria — você age antes de perder o ritmo de vendas</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Gerencia o chat ao vivo enquanto você se concentra 100% em vender</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Funciona com lives gravadas — a ferramenta gerencia tudo mesmo sem você ao vivo</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span>Você termina cada live sabendo exatamente o que aconteceu — com dados reais</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span><span class="txt-short">Monitora tudo em tempo real</span><span class="txt-full">Monitora espectadores, vendas e GMV em tempo real — a cada 2 segundos</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span><span class="txt-short">Automatiza chat, produto e bloqueios</span><span class="txt-full">Automatiza comentários, bloqueios e fixação de produto sem você tocar em nada</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span><span class="txt-short">Alerta quando a live esfria</span><span class="txt-full">Alerta quando a live esfria — você age antes de perder o ritmo de vendas</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span><span class="txt-short">Gerencia o chat pra você vender</span><span class="txt-full">Gerencia o chat ao vivo enquanto você se concentra 100% em vender</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span><span class="txt-short">Funciona até com live gravada</span><span class="txt-full">Funciona com lives gravadas — a ferramenta gerencia tudo mesmo sem você ao vivo</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#c0d8ee;padding:8px 10px;background:rgba(0,230,118,.04);border-radius:6px"><span style="color:#00e676;flex-shrink:0;font-size:15px">✓</span><span class="txt-short">Termina cada live com dados reais</span><span class="txt-full">Você termina cada live sabendo exatamente o que aconteceu — com dados reais</span></div>
         </div>
       </div>
     </div>
@@ -965,7 +972,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
   <div class="tg">
     <div class="tc reveal d1">
       <div style="font-size:32px;color:rgba(0,212,255,.3);line-height:1;margin-bottom:10px">"</div>
-      <p class="tct">Eu rodo live gravada em 2 contas ao mesmo tempo e a WorkLive monitora as duas pra mim. Quando bate no limite de tempo que configurei, ela encerra sozinha antes de tomar violação. Já salvou minha conta várias vezes! Não fico mais na frente da tela esperando. 🔥</p>
+      <p class="tct"><span class="txt-short">Rodo 2 contas ao mesmo tempo e a WorkLive monitora tudo pra mim. Encerra sozinha antes de tomar violação — já salvou minha conta várias vezes! 🔥</span><span class="txt-full">Eu rodo live gravada em 2 contas ao mesmo tempo e a WorkLive monitora as duas pra mim. Quando bate no limite de tempo que configurei, ela encerra sozinha antes de tomar violação. Já salvou minha conta várias vezes! Não fico mais na frente da tela esperando. 🔥</span></p>
       <div class="tca">
         <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e91e8c,#ff6b35);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(233,30,140,.3)">JN</div>
         <div><div class="tcn">Jéssica N.</div><div class="tcr">Live Commerce · 2 contas simultâneas</div><div class="stars">★★★★★</div></div>
@@ -973,7 +980,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
     </div>
     <div class="tc reveal d2">
       <div style="font-size:32px;color:rgba(0,212,255,.3);line-height:1;margin-bottom:10px">"</div>
-      <p class="tct">O timer inteligente é o que mais uso. Coloco pra encerrar automaticamente antes de dar o horário crítico e nunca mais tomei advertência por tempo. Escalo tranquilo rodando live gravada 24h por dia — literalmente no automático enquanto durmo rsrs 🚀</p>
+      <p class="tct"><span class="txt-short">O timer inteligente é o que mais uso — nunca mais tomei advertência por tempo. Escalo tranquilo rodando live gravada 24h no automático! 🚀</span><span class="txt-full">O timer inteligente é o que mais uso. Coloco pra encerrar automaticamente antes de dar o horário crítico e nunca mais tomei advertência por tempo. Escalo tranquilo rodando live gravada 24h por dia — literalmente no automático enquanto durmo rsrs 🚀</span></p>
       <div class="tca">
         <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#0066ff,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,102,255,.3)">LM</div>
         <div><div class="tcn">Lucas M.</div><div class="tcr">Live Commerce · Lives 24h no automático</div><div class="stars">★★★★★</div></div>
@@ -981,7 +988,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
     </div>
     <div class="tc reveal d3">
       <div style="font-size:32px;color:rgba(0,212,255,.3);line-height:1;margin-bottom:10px">"</div>
-      <p class="tct">A proteção contra violações me salvou demais. A ferramenta detecta o aviso e já derruba a live antes de virar punição. Hoje escalo com 3 contas rodando live gravada e consigo gerenciar tudo de um painel só. Isso aqui é nível outro. 💯</p>
+      <p class="tct"><span class="txt-short">A proteção contra violações me salvou demais — derruba a live antes de virar punição. Hoje escalo com 3 contas de um painel só. 💯</span><span class="txt-full">A proteção contra violações me salvou demais. A ferramenta detecta o aviso e já derruba a live antes de virar punição. Hoje escalo com 3 contas rodando live gravada e consigo gerenciar tudo de um painel só. Isso aqui é nível outro. 💯</span></p>
       <div class="tca">
         <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(124,58,237,.3)">AR</div>
         <div><div class="tcn">Amanda R.</div><div class="tcr">Live Commerce · 3 contas em escala</div><div class="stars">★★★★★</div></div>
