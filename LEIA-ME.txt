@@ -1,0 +1,9 @@
+PACOTE FINAL
+
+Os dois arquivos foram atualizados:
+- /index.html
+- /pro/index.html
+
+As 4 provas sociais estão incorporadas diretamente em ambos os HTMLs, sem depender de pasta de imagens.
+O carrossel é responsivo para celular.
+A integração e os mecanismos existentes de checkout foram preservados; a alteração foi limitada à área de provas sociais e à navegação correspondente.
