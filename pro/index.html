@@ -624,6 +624,52 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
   .notif-sub{font-size:10px}
 }
 
+
+/* ===== Provas sociais em carrossel ===== */
+.social-proof{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 0,rgba(0,212,255,.10),transparent 42%),var(--s1);border-top:1px solid var(--gb);border-bottom:1px solid var(--gb)}
+.social-proof:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.sp-wrap{position:relative;z-index:1;max-width:1180px;margin:auto}
+.sp-head{text-align:center;max-width:760px;margin:0 auto 34px}
+.sp-kicker{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid rgba(0,212,255,.22);border-radius:999px;background:rgba(0,212,255,.07);color:#8eeeff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.sp-kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:#00e38c;box-shadow:0 0 14px #00e38c}
+.sp-title{font-size:clamp(30px,4.5vw,54px);line-height:1.05;margin:0;color:#fff;letter-spacing:-.035em}
+.sp-title span{background:linear-gradient(90deg,#00d4ff,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sp-copy{max-width:650px;margin:15px auto 0;color:#91a8c2;font-size:16px;line-height:1.7}
+.sp-shell{position:relative;max-width:900px;margin:0 auto}
+.sp-stage{overflow:hidden;border-radius:24px;box-shadow:0 28px 80px rgba(0,0,0,.42);border:1px solid rgba(0,212,255,.17);background:#07111f;touch-action:pan-y}
+.sp-track{display:flex;transition:transform .62s cubic-bezier(.22,.75,.18,1);will-change:transform}
+.sp-slide{min-width:100%;padding:18px;box-sizing:border-box}
+.sp-card{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 260px;align-items:center;gap:26px;min-height:590px;padding:28px;border-radius:18px;background:linear-gradient(145deg,rgba(13,29,48,.98),rgba(5,13,25,.98));overflow:hidden}
+.sp-card:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-100px;background:rgba(0,212,255,.08);filter:blur(4px)}
+.sp-media{position:relative;height:530px;border-radius:15px;overflow:hidden;background:#02070d;border:1px solid rgba(255,255,255,.08);cursor:zoom-in;z-index:1}
+.sp-media img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .45s ease}
+.sp-media:hover img{transform:scale(1.018)}
+.sp-caption{position:relative;z-index:2}
+.sp-badge{display:inline-flex;align-items:center;gap:7px;color:#71f5bb;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.sp-badge:before{content:"✓";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(0,227,140,.13);border:1px solid rgba(0,227,140,.3)}
+.sp-caption h3{font-size:27px;line-height:1.15;color:#fff;margin:0 0 12px}
+.sp-caption p{font-size:14px;line-height:1.65;color:#8da3bd;margin:0}
+.sp-mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.sp-mini span{padding:7px 9px;border-radius:8px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);color:#cfe1f4;font-size:11px;font-weight:700}
+.sp-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(5,13,25,.88);backdrop-filter:blur(12px);color:#fff;font-size:24px;display:grid;place-items:center;cursor:pointer;z-index:5;transition:.2s}
+.sp-arrow:hover{background:#00a8d6;border-color:#00d4ff;transform:translateY(-50%) scale(1.06)}
+.sp-prev{left:-24px}.sp-next{right:-24px}
+.sp-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.sp-dots{display:flex;gap:8px}
+.sp-dot{width:8px;height:8px;border:0;border-radius:99px;background:#365069;cursor:pointer;padding:0;transition:.3s}
+.sp-dot.active{width:28px;background:#00d4ff;box-shadow:0 0 16px rgba(0,212,255,.55)}
+.sp-counter{font-size:12px;color:#67829c;font-variant-numeric:tabular-nums}
+.sp-cta{text-align:center;margin-top:28px}
+.sp-cta a{display:inline-flex;align-items:center;gap:9px;padding:14px 23px;border-radius:10px;text-decoration:none;color:#06101b;background:linear-gradient(135deg,#00d4ff,#70ebff);font-size:13px;font-weight:900;box-shadow:0 12px 28px rgba(0,212,255,.22);transition:.2s}
+.sp-cta a:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,212,255,.3)}
+.sp-lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,5,12,.94);display:none;align-items:center;justify-content:center;padding:26px;backdrop-filter:blur(10px)}
+.sp-lightbox.open{display:flex}
+.sp-lightbox img{max-width:min(950px,94vw);max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 30px 100px #000}
+.sp-lightbox button{position:absolute;top:20px;right:22px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:25px;cursor:pointer}
+@media(max-width:900px){.sp-prev{left:8px}.sp-next{right:8px}.sp-card{grid-template-columns:1fr;min-height:auto;padding:14px}.sp-caption{padding:6px 8px 14px}.sp-media{height:590px}.sp-slide{padding:10px}.sp-arrow{width:42px;height:42px}}
+@media(max-width:600px){.social-proof{padding-left:3.5%!important;padding-right:3.5%!important}.sp-copy{font-size:14px}.sp-stage{border-radius:18px}.sp-card{border-radius:13px;gap:12px}.sp-media{height:490px}.sp-caption h3{font-size:21px}.sp-arrow{top:43%;width:38px;height:38px;font-size:20px}.sp-mini{margin-top:13px}.sp-mini span{font-size:10px}.sp-lightbox{padding:10px}}
+@media(prefers-reduced-motion:reduce){.sp-track,.sp-media img,.sp-arrow,.sp-cta a{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -646,7 +692,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
 
 <nav>
   <div class="nlogo"><img src="data:image/jpeg;base64,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" alt="Logo"><div class="nlogo-t">Work<span>Live</span></div></div>
-  <div class="nlinks"><a href="#recursos">Recursos</a><a href="#como-funciona">Como funciona</a><a href="#planos">Planos</a><a href="#depoimentos">Depoimentos</a><a href="#faq">FAQ</a></div>
+  <div class="nlinks"><a href="#recursos">Recursos</a><a href="#como-funciona">Como funciona</a><a href="#planos">Planos</a><a href="#provas-sociais">Provas reais</a><a href="#depoimentos">Depoimentos</a><a href="#faq">FAQ</a></div>
   <div class="nacts"><a href="#planos" class="np">Começar Agora →</a></div>
 </nav>
 <div style="background:linear-gradient(180deg,var(--s1) 0%,var(--bg) 100%);padding-bottom:40px">
@@ -872,6 +918,53 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
   </div>
 </div>
 </section>
+
+
+<section class="sec social-proof" id="provas-sociais" aria-labelledby="sp-title">
+  <div class="sp-wrap">
+    <div class="sp-head reveal">
+      <div class="sp-kicker">Resultados enviados por clientes</div>
+      <h2 class="sp-title" id="sp-title">Não precisa acreditar só na nossa palavra.<br><span>Veja a WorkLive em ação.</span></h2>
+      <p class="sp-copy">Feedbacks e registros reais de quem já está usando a ferramenta para acompanhar suas operações e vendas ao vivo.</p>
+    </div>
+
+    <div class="sp-shell reveal" data-social-carousel>
+      <button class="sp-arrow sp-prev" type="button" aria-label="Prova anterior">‹</button>
+      <div class="sp-stage">
+        <div class="sp-track">
+          <article class="sp-slide">
+            <div class="sp-card">
+              <button class="sp-media" type="button" aria-label="Ampliar prova social 1"><img src="../assets/provas-sociais/prova-01.jpg" alt="Conversa de cliente elogiando a WorkLive e mostrando a ferramenta em uso" loading="lazy"></button>
+              <div class="sp-caption"><div class="sp-badge">Feedback real</div><h3>“A ferramenta está muito completa.”</h3><p>Cliente destaca a evolução da plataforma e a possibilidade de acompanhar a operação com mais autonomia.</p><div class="sp-mini"><span>WhatsApp</span><span>Ferramenta em uso</span></div></div>
+            </div>
+          </article>
+          <article class="sp-slide">
+            <div class="sp-card">
+              <button class="sp-media" type="button" aria-label="Ampliar prova social 2"><img src="../assets/provas-sociais/prova-02.jpg" alt="Dashboard da WorkLive acompanhado de notificações de novas vendas" loading="lazy"></button>
+              <div class="sp-caption"><div class="sp-badge">Operação real</div><h3>Dashboard e vendas acontecendo ao vivo.</h3><p>Visão centralizada da operação, histórico de vendas e notificações chegando diretamente no celular.</p><div class="sp-mini"><span>Dashboard</span><span>Notificações</span><span>Vendas</span></div></div>
+            </div>
+          </article>
+          <article class="sp-slide">
+            <div class="sp-card">
+              <button class="sp-media" type="button" aria-label="Ampliar prova social 3"><img src="../assets/provas-sociais/prova-03.jpg" alt="Tela da WorkLive mostrando uma nova venda em destaque" loading="lazy"></button>
+              <div class="sp-caption"><div class="sp-badge">Venda identificada</div><h3>Cada nova venda ganha destaque.</h3><p>O painel exibe as movimentações da live de forma visual, ajudando a acompanhar o que está acontecendo em tempo real.</p><div class="sp-mini"><span>Nova venda</span><span>Tempo real</span></div></div>
+            </div>
+          </article>
+          <article class="sp-slide">
+            <div class="sp-card">
+              <button class="sp-media" type="button" aria-label="Ampliar prova social 4"><img src="../assets/provas-sociais/prova-04.jpg" alt="Cliente elogiando a WorkLive e mostrando notificações de vendas" loading="lazy"></button>
+              <div class="sp-caption"><div class="sp-badge">Cliente satisfeito</div><h3>“Sua ferramenta funciona perfeitamente.”</h3><p>Um relato direto de cliente acompanhado por registros das notificações recebidas durante a operação.</p><div class="sp-mini"><span>Depoimento</span><span>Resultado real</span></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <button class="sp-arrow sp-next" type="button" aria-label="Próxima prova">›</button>
+      <div class="sp-controls"><div class="sp-dots" aria-label="Escolher prova social"></div><div class="sp-counter" aria-live="polite">01 / 04</div></div>
+    </div>
+    <div class="sp-cta reveal"><a href="#planos">Quero usar a WorkLive agora <span>→</span></a></div>
+  </div>
+</section>
+<div class="sp-lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada"><button type="button" aria-label="Fechar">×</button><img src="" alt=""></div>
 
 <section id="planos" style="background:var(--s1);border-top:1px solid var(--gb);padding:80px 6%">
 <div style="max-width:1200px;margin:0 auto;width:100%"><div style="display:flex;flex-direction:column;gap:32px;width:100%">
@@ -1315,6 +1408,60 @@ const phoneObs = new IntersectionObserver((entries) => {
 
 const phoneEl = document.getElementById('phone-notifs');
 if(phoneEl) phoneObs.observe(phoneEl);
+</script>
+
+
+<script>
+(() => {
+  const root = document.querySelector('[data-social-carousel]');
+  if (!root) return;
+  const track = root.querySelector('.sp-track');
+  const slides = [...root.querySelectorAll('.sp-slide')];
+  const dotsWrap = root.querySelector('.sp-dots');
+  const counter = root.querySelector('.sp-counter');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index = 0, timer, startX = 0, deltaX = 0;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button'; dot.className = 'sp-dot';
+    dot.setAttribute('aria-label', `Mostrar prova ${i + 1}`);
+    dot.addEventListener('click', () => go(i, true));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = [...dotsWrap.children];
+
+  function go(next, userAction = false) {
+    index = (next + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    counter.textContent = `${String(index + 1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
+    if (userAction) restart();
+  }
+  function start(){ if (!reduceMotion) timer = setInterval(() => go(index + 1), 5200); }
+  function stop(){ clearInterval(timer); }
+  function restart(){ stop(); start(); }
+  root.querySelector('.sp-prev').addEventListener('click', () => go(index - 1, true));
+  root.querySelector('.sp-next').addEventListener('click', () => go(index + 1, true));
+  root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
+  const stage = root.querySelector('.sp-stage');
+  stage.addEventListener('pointerdown', e => { startX = e.clientX; deltaX = 0; stage.setPointerCapture?.(e.pointerId); });
+  stage.addEventListener('pointermove', e => { if (startX) deltaX = e.clientX - startX; });
+  stage.addEventListener('pointerup', () => { if (Math.abs(deltaX) > 55) go(index + (deltaX < 0 ? 1 : -1), true); startX = 0; deltaX = 0; });
+
+  const lightbox = document.querySelector('.sp-lightbox');
+  const lightImg = lightbox.querySelector('img');
+  const close = () => { lightbox.classList.remove('open'); lightImg.src=''; document.body.style.overflow=''; };
+  root.querySelectorAll('.sp-media').forEach(btn => btn.addEventListener('click', () => {
+    const img = btn.querySelector('img'); lightImg.src = img.src; lightImg.alt = img.alt;
+    lightbox.classList.add('open'); document.body.style.overflow='hidden';
+  }));
+  lightbox.querySelector('button').addEventListener('click', close);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); if(e.key === 'ArrowRight') go(index+1,true); if(e.key === 'ArrowLeft') go(index-1,true); });
+  go(0); start();
+})();
 </script>
 
 </body>
