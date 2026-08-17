@@ -134,6 +134,20 @@ nav{padding:0 6%;height:68px;display:flex;align-items:center;justify-content:spa
 .pfeat{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
 .pfeat li{font-size:12px;color:var(--t2);display:flex;align-items:center;gap:7px}
 .pfeat li::before{content:"✓";color:var(--cyan);font-size:10px;font-weight:900}
+/* Course bonus — compact, aligned highlight inside pricing cards */
+.pfeat li.course-bonus{
+  position:relative;display:block;align-items:initial;gap:0;
+  padding:10px 12px 10px 31px;margin-top:2px;
+  border:1px solid rgba(0,229,255,.16);
+  border-radius:10px;background:rgba(0,229,255,.045);
+  line-height:1.35
+}
+.pfeat li.course-bonus::before{
+  position:absolute;left:11px;top:11px;line-height:1;
+}
+.course-bonus-title{display:block;color:#dcecff;font-size:12px;font-weight:800;margin-bottom:3px}
+.course-bonus-desc{display:block;color:var(--t2);font-size:11px;font-weight:400;line-height:1.4}
+
 .btn{width:100%;padding:14px;border-radius:8px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border:none;transition:.2s;text-decoration:none;display:block;text-align:center}
 .bb{background:linear-gradient(135deg,#0066dd,#00aaff);color:#fff;box-shadow:0 4px 20px rgba(0,136,255,.3)}
 .bb:hover{box-shadow:0 6px 28px rgba(0,136,255,.5);transform:scale(1.01)}
@@ -917,7 +931,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
       <div class="pbadge">✦ Mais escolhido</div>
       <div class="pname">Trimestral</div><div class="pprice"><sup>R$</sup>197</div><div class="pper">/3 meses · R$ 65,67/mês</div><div class="psave">Economize 32% + Curso Completo</div>
       <div class="psep"></div><div class="pkeys">🔑 2 chaves de acesso</div>
-      <ul class="pfeat"><li>Todos os recursos da WorkLive</li><li>2 dispositivos inclusos</li><li>Suporte via WhatsApp</li><li>Atualizações automáticas</li><li>Cancelamento fácil</li><li><strong>🎓 WorkLive Full IA incluso</strong> — curso completo para aprender a criar e fazer lives 100% com Inteligência Artificial</li></ul>
+      <ul class="pfeat"><li>Todos os recursos da WorkLive</li><li>2 dispositivos inclusos</li><li>Suporte via WhatsApp</li><li>Atualizações automáticas</li><li>Cancelamento fácil</li><li class="course-bonus"><span class="course-bonus-title">🎓 WorkLive Full IA incluso</span><span class="course-bonus-desc">Curso completo para aprender a criar e fazer lives 100% com Inteligência Artificial</span></li></ul>
       <div style="margin-bottom:12px">
       <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff3344;font-weight:800">⚡ Apenas 8 restantes!</span></div>
       <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:84%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
@@ -927,7 +941,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
     <div class="plan">
       <div class="pname">Semestral</div><div class="pprice"><sup>R$</sup>367</div><div class="pper">/6 meses · R$ 61,17/mês</div><div class="psave">Economize 37% + Curso Completo</div>
       <div class="psep"></div><div class="pkeys">🔑 2 chaves de acesso</div>
-      <ul class="pfeat"><li>Todos os recursos da WorkLive</li><li>2 dispositivos inclusos</li><li>Suporte via WhatsApp</li><li>Atualizações automáticas</li><li>Cancelamento fácil</li><li><strong>🎓 WorkLive Full IA incluso</strong> — curso completo para aprender a criar e fazer lives 100% com Inteligência Artificial</li><li>Onboarding 1:1</li></ul>
+      <ul class="pfeat"><li>Todos os recursos da WorkLive</li><li>2 dispositivos inclusos</li><li>Suporte via WhatsApp</li><li>Atualizações automáticas</li><li>Cancelamento fácil</li><li class="course-bonus"><span class="course-bonus-title">🎓 WorkLive Full IA incluso</span><span class="course-bonus-desc">Curso completo para aprender a criar e fazer lives 100% com Inteligência Artificial</span></li><li>Onboarding 1:1</li></ul>
       <div style="margin-bottom:12px">
       <div style="display:flex;justify-content:space-between;font-size:9px;color:#7a9cc0;margin-bottom:4px"><span>Vagas disponíveis</span><span style="color:#ff6677;font-weight:700">19 restantes</span></div>
       <div style="height:4px;background:rgba(255,51,68,.15);border-radius:100px;overflow:hidden"><div style="width:62%;height:100%;background:linear-gradient(90deg,#ff3344,#ff6677);border-radius:100px"></div></div>
