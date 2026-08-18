@@ -638,6 +638,11 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
   .notif-sub{font-size:10px}
 }
 
+
+  /* Demonstração em vídeo */
+  .demo-video{max-width:900px;margin:42px auto 0;padding:10px;background:rgba(0,136,255,.06);border:1px solid rgba(0,212,255,.22);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.22);overflow:hidden}
+  .demo-video video{display:block;width:100%;max-height:70vh;background:#05070b;border-radius:12px;object-fit:contain}
+  @media(max-width:600px){.demo-video{margin-top:30px;padding:6px;border-radius:14px}.demo-video video{border-radius:9px;max-height:68vh}}
 </style>
 </head>
 <body>
@@ -660,7 +665,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
 
 <nav>
   <div class="nlogo"><img src="data:image/jpeg;base64,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" alt="Logo"><div class="nlogo-t">Work<span>Live</span></div></div>
-  <div class="nlinks"><a href="#recursos">Recursos</a><a href="#como-funciona">Como funciona</a><a href="#planos">Planos</a><a href="#depoimentos">Depoimentos</a><a href="#faq">FAQ</a></div>
+  <div class="nlinks"><a href="#recursos">Recursos</a><a href="#demonstracao-video">Demonstração</a><a href="#como-funciona">Como funciona</a><a href="#planos">Planos</a><a href="#depoimentos">Depoimentos</a><a href="#faq">FAQ</a></div>
   <div class="nacts"><a href="#planos" class="np">Começar Agora →</a></div>
 </nav>
 <div style="background:linear-gradient(180deg,var(--s1) 0%,var(--bg) 100%);padding-bottom:40px">
@@ -669,7 +674,7 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
     <div class="hbadge"><span class="hdot"></span>Lives gravadas · Automação · Escala</div>
     <h1><span class="grad">Sua live vende enquanto você dorme.</span><br><span style="font-size:clamp(22px,3vw,36px);font-weight:700;color:#ddeeff;letter-spacing:-1px">Você transmite. A gente gerencia tudo.</span></h1>
     <p class="hero-p">Automatize, monitore e gerencie suas lives no TikTok Shop — mesmo com lives gravadas, a WorkLive trabalha por você. <strong>Você não precisa estar ao vivo para sua transmissão funcionar.</strong></p>
-    <div class="hbtns"><a href="#planos" class="hbtn1">Começar Agora →</a><a href="#como-funciona" class="hbtn2">▶ Ver Demonstração</a></div>
+    <div class="hbtns"><a href="#planos" class="hbtn1">Começar Agora →</a><a href="#demonstracao-video" class="hbtn2">▶ Ver Demonstração</a></div>
     
   </div>
   <div class="hr">
@@ -872,6 +877,22 @@ footer{padding:22px 6%;border-top:1px solid var(--b);display:flex;justify-conten
 </section>
 
 
+
+
+<!-- DEMONSTRAÇÃO EM VÍDEO -->
+<section class="sec" id="demonstracao-video" style="padding-top:64px;padding-bottom:64px;background:var(--bg);border-bottom:1px solid var(--gb)">
+  <div class="sw" style="text-align:center">
+    <div class="eye">Veja na prática</div>
+    <h2 class="sh">Demonstração da <span class="grad">WorkLive</span></h2>
+    <p class="sp" style="max-width:620px;margin:0 auto 30px">Assista à demonstração e veja como a WorkLive simplifica e automatiza sua operação.</p>
+    <div class="demo-video reveal">
+      <video controls playsinline preload="metadata" aria-label="Demonstração da WorkLive">
+        <source src="../assets/demonstracao-worklive.mp4" type="video/mp4">
+        Seu navegador não suporta a reprodução deste vídeo.
+      </video>
+    </div>
+  </div>
+</section>
 
 <section class="sec" id="como-funciona">
 <div class="si" style="text-align:center">
