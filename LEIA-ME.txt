@@ -1,9 +1,18 @@
-PACOTE FINAL
+WORKLIVE — LANDING FINAL KIWIFY
 
-Os dois arquivos foram atualizados:
-- /index.html
-- /pro/index.html
+Esta é a versão principal única da landing page.
 
-As 4 provas sociais estão incorporadas diretamente em ambos os HTMLs, sem depender de pasta de imagens.
-O carrossel é responsivo para celular.
-A integração e os mecanismos existentes de checkout foram preservados; a alteração foi limitada à área de provas sociais e à navegação correspondente.
+Removidos:
+- /pro
+- /vd
+
+Mantido:
+- domínio principal configurado no CNAME
+- layout, textos, imagens, vídeo e demais funções do index.html
+
+Checkouts oficiais Kiwify:
+- Mensal: https://pay.kiwify.com.br/i5M4XqX
+- Trimestral: https://pay.kiwify.com.br/9Nf9uqF
+- Semestral: https://pay.kiwify.com.br/bCgyUtE
+
+O checkout de teste de R$ 5,00 NÃO foi incluído.
